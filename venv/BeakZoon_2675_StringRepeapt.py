@@ -12,8 +12,7 @@ for t in range (T):
 
     print(StringRepeat(tr,str_list))
 
-#
-#
+
 # t = int(input())
 # for i in range(t):
 #     num, s = input().split()
