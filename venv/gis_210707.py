@@ -1,60 +1,99 @@
 class stack:
     def __init__(self):
-        self.items = []
+        self.stack_list = []
+        self.stak_size = 0
 
     def push(self, item):
-        self.items.append(item)
+        self.stack_list.append(item)
+        self.stak_size += 1
 
     def pop(self):
-
-        length = stk.size()
+        length = self.stak_size
+        ans = -1
 
         if length == 0:
-            print(-1)
+            return ans
         else:
-            print(self.items[length-1])
-            self.items.remove(self.items[length-1])
+            ans = self.stack_list[length-1]
+            self.stack_list.remove(self.stack_list[length-1])
+            self.stak_size -= 1
+            return ans
 
-    def isEmpty(self):
-        length = stk.size()
+    def empty(self):
+        length = self.stak_size
+        ans = 1
         if length == 0:
-            return 1
+            return ans
         else:
+            ans = 0
             return 0
 
     def top(self):
-        length = stk.size() - 1
-        return  self.items[length]
+        length = self.stak_size
+        ans = -1
+        if length == 0:
+            return ans
+        else:
+            ans = self.stack_list[length-1]
+        return  ans
 
     def size(self):
-        length = 0
-        for _ in self.items:
-            length+= 1
+        size = self.stak_size
+        return size
 
-        return length
-
-
-
+    def show(self):
+        ans = self.stack_list
+        return  ans
 
 
-stk = stack()
+
+stack = stack()
 
 n =int(input())
 
 for _ in range(n):
     command = input().split(" ")
     if command[0] == 'push':
-        stk.push(int(command[1]))
+        stack.push(int(command[1]))
 
     elif command[0] == 'pop':
-        stk.pop()
+        print(stack.pop())
 
     elif command[0] == 'top':
-        print(stk.top())
+        print(stack.top())
 
     elif command[0] == 'empty':
-        print(stk.isEmpty())
+        print(stack.empty())
 
     elif command[0] == 'size':
-        print(stk.size())
+        print(stack.size())
 
+print(stack.show())
+
+
+
+# 14
+# push 1
+# push 2
+# top
+# size
+# empty
+# pop
+# pop
+# pop
+# size
+# empty
+# pop
+# push 3
+# empty
+# top
+
+
+# 7
+# pop
+# top
+# push 123
+# top
+# pop
+# top
+# pop
