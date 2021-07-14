@@ -1,14 +1,17 @@
 class stack:
     def __init__(self):
         self.stack_list = []
-        self.stak_size = 0
+        #self.stack_list = [None for _ in range(n)]
+        #self.stack_list = [i+1 for i in range(n)]
+        self.stack_size = 0
 
     def push(self, item):
         self.stack_list.append(item)
-        self.stak_size += 1
+        # self.stack_list[self.stack_size] = int(item)
+        self.stack_size += 1
 
     def pop(self):
-        length = self.stak_size
+        length = self.stack_size
         ans = -1
 
         if length == 0:
@@ -16,11 +19,11 @@ class stack:
         else:
             ans = self.stack_list[length-1]
             self.stack_list.remove(self.stack_list[length-1])
-            self.stak_size -= 1
+            self.stack_size -= 1
             return ans
 
     def empty(self):
-        length = self.stak_size
+        length = self.stack_size
         ans = 1
         if length == 0:
             return ans
@@ -29,7 +32,7 @@ class stack:
             return 0
 
     def top(self):
-        length = self.stak_size
+        length = self.stack_size
         ans = -1
         if length == 0:
             return ans
@@ -38,7 +41,7 @@ class stack:
         return  ans
 
     def size(self):
-        size = self.stak_size
+        size = self.stack_size
         return size
 
     def show(self):
