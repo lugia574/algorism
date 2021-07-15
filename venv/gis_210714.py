@@ -1,11 +1,25 @@
 # 큐 fifo (first in first out)
 
-class queue:
+# 노드 선언
+class Node:
     def __init__(self):
-        self.q_list = [None for _ in range(n)]
+        self.data= data
+        self.next= None
+
+# 링크리스트 선언
+class LinkedList:
+    def __init__(self):
+        init = Node('init')
+        self.head = init
+        self.tail = init
+
+class queue:
+    def __init__(self, data):
+        self.q_list = []
         self.q_size = 0
 
     def push (self, item):
+
         self.q_list[self.q_size] = item
         self.q_size += 1
 
