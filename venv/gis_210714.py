@@ -7,11 +7,53 @@ class Node:
         self.next= None
 
 # 링크리스트 선언
-class LinkedList:
+class QueueLinkedList:
     def __init__(self):
-        init = Node('init')
-        self.head = init
-        self.tail = init
+        self.head = Node()
+
+    def push(self, data):
+        cur =self.head
+        while cur.next is not None:
+            cur = cur.next
+        cur.next = Node(data)
+
+    def pop(self):
+        cur = self.head
+        while cur.next is not None:
+            next_node = cur.next.next
+            cur.next = next_node
+
+    def size(self):
+        cur = self.head
+        cnt = 0
+        while cur:
+            cnt +=1
+            cur = cur.next
+        return cnt
+
+    def empty(self):
+        ans = 1
+        if self.size() == 0:
+            return ans
+        else:
+            ans = 0
+            return 0
+
+    def front(self):
+        cur = self.head
+        ans = -1
+        if self.size() !=0:
+            ans = cur.data
+        return ans
+
+    def back(self):
+        cur = self.head
+        ans = -1
+        if self.size() != 0:
+            while cur.next is not None:
+                cur= cur.next
+            ans = cur.data
+        return ans
 
 
 ###########################################
@@ -36,6 +78,9 @@ class queue:
             # 한칸씩 당겨야 하는거 아니냐
             for i in range(self.q_size):
                 self.q_list[i] = self.q_list[i+1]
+
+            # 끝 인덱
+            self.q_list[self.q_size-1] = None
             self.q_size -= 1
 
         return ans
@@ -69,6 +114,7 @@ class queue:
 
 n = int(input())
 queue = queue()
+
 
 
 for _ in range(n):

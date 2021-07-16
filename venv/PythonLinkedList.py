@@ -21,7 +21,7 @@ class LinkedList:
 
     # append 메소드 (insert - 맨 뒤에 노드 추가, tail과 node의 next, 데이터 개수 변경)
     def append(self, data):
-        new_node = Node(data)
+        new_node = N    ode(data)
         self.tail.next = new_node
         self.tail = new_node
 
