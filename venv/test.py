@@ -10,3 +10,6 @@
 #
 # print(4177-3550)
 #
+ae = ''
+ae += str(5+1)
+print(ae)

@@ -13,6 +13,9 @@ class LinkedList:
         self.head = init
         self.tail = init
 
+
+###########################################
+
 class queue:
     def __init__(self, data):
         self.q_list = []
