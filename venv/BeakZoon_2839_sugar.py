@@ -32,7 +32,7 @@ def sugar(order):
             cnt+= 1
 
         else :
-            count = -1;
+            cnt = -1;
             break;
 
     return cnt
