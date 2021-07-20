@@ -29,5 +29,7 @@
 #
 # for x in apt:
 #     print(x)
+import math
 
-print((11%3)%5)
+print(round(4.58257569495584))
+print(int(math.sqrt(21)))
