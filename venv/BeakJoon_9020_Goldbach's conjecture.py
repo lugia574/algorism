@@ -34,14 +34,13 @@ def Goldbach2(num):
     testnum2 = int(num/2)
 
     for _ in range(int(num/2)):
-        if testnum not in Gold_nums:
-            if Prime_number_list[testnum] == True and Prime_number_list[testnum2] == True :
-                Gold_nums.append(testnum)
-                Gold_nums.append(testnum2)
-                break
-            else:
-                testnum -= 1
-                testnum2 += 1
+        if Prime_number_list[testnum] == True and Prime_number_list[testnum2] == True :
+            Gold_nums.append(testnum)
+            Gold_nums.append(testnum2)
+            break
+        else:
+            testnum -= 1
+            testnum2 += 1
 
 
     return Gold_nums
@@ -64,27 +63,28 @@ for _ in range(Tr):
 
 
 
+# 이대로 했는데 시초 남
 
-def Goldbach(num):
-    Gold_nums = []
-    Prime_number_list = [True] *(num+1)
-    sqrt = int(math.sqrt(num))
-
-    for i in range(2, sqrt+1):
-        if Prime_number_list[i] == True:
-            for j in range(2*i, num+1, i):
-                Prime_number_list[j] = False
-
-    for i in range(2,num):
-        if i > 1 and Prime_number_list[i] == True:
-            for j in range(i,num):
-                if Prime_number_list[j] == True and num == i + j:
-                    if Gold_nums:
-                        if Gold_nums[1] - Gold_nums[0] > j - i:
-                            Gold_nums[0] = i
-                            Gold_nums[1] = j
-                    else:
-                        Gold_nums.append(i)
-                        Gold_nums.append(j)
-
-    return Gold_nums
+# def Goldbach(num):
+#     Gold_nums = []
+#     Prime_number_list = [True] *(num+1)
+#     sqrt = int(math.sqrt(num))
+#
+#     for i in range(2, sqrt+1):
+#         if Prime_number_list[i] == True:
+#             for j in range(2*i, num+1, i):
+#                 Prime_number_list[j] = False
+#
+#     for i in range(2,num):
+#         if i > 1 and Prime_number_list[i] == True:
+#             for j in range(i,num):
+#                 if Prime_number_list[j] == True and num == i + j:
+#                     if Gold_nums:
+#                         if Gold_nums[1] - Gold_nums[0] > j - i:
+#                             Gold_nums[0] = i
+#                             Gold_nums[1] = j
+#                     else:
+#                         Gold_nums.append(i)
+#                         Gold_nums.append(j)
+#
+#     return Gold_nums
