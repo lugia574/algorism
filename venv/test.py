@@ -29,8 +29,15 @@
 #
 # for x in apt:
 #     print(x)
-import math
+# import math
 #
 # print(round(4.58257569495584))
-print(int(math.sqrt(72)))
+# print(int(math.sqrt(72)))
 # print(8/2)
+
+test_list = []
+
+if test_list:
+    print(test_list)
+else:
+    print('wow')
