@@ -35,9 +35,28 @@
 # print(int(math.sqrt(72)))
 # print(8/2)
 
-test_list = []
+# test_list = []
+#
+# if test_list:
+#     print(test_list)
+# else:
+#     print('wow')
 
-if test_list:
-    print(test_list)
-else:
-    print('wow')
+arr = [[0 for col in range(3)]for row in range(3)]
+
+for i in range(len(arr)):
+    for j in range(len(arr)):
+        if i == 0 or i == 2:
+            arr[i][j] = 1
+        elif i == 1 and (j == 0 or j == 2):
+            arr[i][j] = 1
+        else:
+            arr[i][j] = 0
+
+
+print(arr)
+for i in range(len(arr)):
+    for j in range(len(arr)):
+        print(arr[i][j], end=" ")
+
+    print()
