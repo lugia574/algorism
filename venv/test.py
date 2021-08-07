@@ -41,22 +41,27 @@
 #     print(test_list)
 # else:
 #     print('wow')
+#
+# arr = [[0 for col in range(3)]for row in range(3)]
+#
+# for i in range(len(arr)):
+#     for j in range(len(arr)):
+#         if i == 0 or i == 2:
+#             arr[i][j] = 1
+#         elif i == 1 and (j == 0 or j == 2):
+#             arr[i][j] = 1
+#         else:
+#             arr[i][j] = 0
+#
+#
+# print(arr)
+# for i in range(len(arr)):
+#     for j in range(len(arr)):
+#         print(arr[i][j], end=" ")
+#
+#     print()
 
-arr = [[0 for col in range(3)]for row in range(3)]
-
-for i in range(len(arr)):
-    for j in range(len(arr)):
-        if i == 0 or i == 2:
-            arr[i][j] = 1
-        elif i == 1 and (j == 0 or j == 2):
-            arr[i][j] = 1
-        else:
-            arr[i][j] = 0
-
-
-print(arr)
-for i in range(len(arr)):
-    for j in range(len(arr)):
-        print(arr[i][j], end=" ")
-
-    print()
+num =254
+num_list = list(map(int,str(num)))
+print(num,num_list[0],num_list[1],num_list[2])
+print(type(num_list[0]))
