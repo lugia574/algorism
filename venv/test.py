@@ -61,7 +61,10 @@
 #
 #     print()
 
-num =254
-num_list = list(map(int,str(num)))
-print(num,num_list[0],num_list[1],num_list[2])
-print(type(num_list[0]))
+# num =254
+# num_list = list(map(int,str(num)))
+# print(num,num_list[0],num_list[1],num_list[2])
+# print(type(num_list[0]))
+
+for x in range(2):
+    print('엑스의 값이다',x)
