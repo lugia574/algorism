@@ -14,4 +14,20 @@ def recur_gogodan(m, index = 1):
         print(m,'*', index, '=', m * index)
         recur_gogodan(m,index+1)
 
-recur_gogodan(2)
+# recur_gogodan(2)
+
+def cnt(m):
+    if m > 0:
+        print(m)
+        cnt(m - 1)
+
+
+# cnt(5)
+
+def fac(m):
+    if m == 1:
+        return 1
+    else:
+        return m * fac(m-1)
+
+print(fac(7))
