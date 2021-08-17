@@ -30,4 +30,31 @@ def fac(m):
     else:
         return m * fac(m-1)
 
-print(fac(7))
+# print(fac(7))
+
+def pow(a, n):
+    if n == 1:
+        return a
+    else:
+        return a * pow(a, n-1)
+
+a = 2
+n = 6
+
+# print(pow(2, 6))
+
+def make_castle(m):
+    if m == 0:
+        return
+    else:
+        for _ in range(m):
+            print("*", end="")
+        print()
+
+        make_castle(m-1)
+
+        for _ in range(m):
+            print("*", end="")
+        print()
+
+make_castle(5)
