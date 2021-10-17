@@ -9,33 +9,68 @@
 import math
 
 
-def star(row, col, num):
-    global arr
+# def star(row, col, num):
+#     global arr
+#
+#     if (num == 1):
+#         arr[row][col] = "*";
+#         return
+#
+#     s=int(num/3)
+#     for i in range(3):
+#         for j in range(3):
+#             if i == 1 and j == 1 :
+#                 continue
+#
+#             star(row + (s * i), col + (s * j), s)
 
-    if (num == 1):
-        arr[row][col] = "*";
+# num = int(input())
+# #num = 9 #(3^3) 3^n = 27
+#
+# arr = [[' ' for col in range(num)]for row in range(num)]
+# star(0,0,num)
+#
+# for i in range(len(arr)):
+#     for j in range(len(arr)):
+#         print(arr[i][i], end="")
+#
+#     print()
+
+m = int(input())
+
+arr = [[' ' for _ in range(m)]for _ in range(m)]
+
+def star_stamp(m):
+
+    if m == 3:
+        for i in range(m):
+            arr[0][i] = '*'
+            arr[2][i] = '*'
+            if i!=1 :
+              arr[1][i] = '*'
+
         return
 
-    s=int(num/3)
+    a = m // 3
+    # print('a의 값',a)
+    star_stamp(a)
+
     for i in range(3):
         for j in range(3):
-            if i == 1 and j == 1 :
+            if i == 1 and j == 1:
                 continue
-
-            star(row + (s * i), col + (s * j), s)
-
-
+            for k in range(a):
+                arr[a * i + k][a * j:a * (j + 1)] = arr[k][:a]
 
 
-num = int(input())
-#num = 9 #(3^3) 3^n = 27
 
-arr = [[' ' for col in range(num)]for row in range(num)]
-star(0,0,num)
+
+
+star_stamp(m)
 
 for i in range(len(arr)):
     for j in range(len(arr)):
-        print(arr[i][i], end="")
+        print(arr[i][j], end="")
 
     print()
 
