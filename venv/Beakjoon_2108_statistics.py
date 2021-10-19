@@ -23,9 +23,8 @@ def statistics (N, num_list):
     return avg, median, mode, range_num
 
 
-def Counting(arr, max_num):
+def Counting(arr):
     cnt_dic = {}
-
 
     for i in range(len(arr)):
         cnt = 1
