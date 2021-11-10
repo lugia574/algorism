@@ -66,5 +66,10 @@
 # print(num,num_list[0],num_list[1],num_list[2])
 # print(type(num_list[0]))
 
-for x in range(2):
-    print('엑스의 값이다',x)
+# for x in range(2):
+#     print('엑스의 값이다',x)
+
+arr = [3,2,3,4,1,2,3,4,1,2,3]
+print(arr.index(4))
+arr.remove(3)
+print(arr)
