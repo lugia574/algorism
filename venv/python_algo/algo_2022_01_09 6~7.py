@@ -1,0 +1,78 @@
+# 6. 이중 포문
+# 별찍기
+
+for i in range(5):
+    for j in range(i+1):
+        print("*", end=" ")
+    print()
+
+# 별찍기 2 2중 포만 안하고 해보기
+for i in range(1,6):
+    print("* "*i , end=" ")
+    print()
+
+print("===============")
+# 별찍기 거꾸로
+for i in range(5, 0 ,-1):
+    for j in range(i):
+        print("*", end=" ")
+    print()
+
+# 별찍기 거꾸로 2
+for i in range(5):
+    for j in range(5-i):
+        print("*", end=" ")
+    print()
+
+
+# 7. 문자열과 내장함수
+msg= "It is Time"
+print(msg.upper()) # 대문자로 변환
+print(msg.lower()) # 소문자로 변환
+tmp = msg.upper() # 대문자로 변환된거 새로 객체 저장
+print(tmp.find("T")) # tmp 문자열에 T 자 있는지 확인
+print(tmp.count("T")) # tmp 문자열에 T 가 몇개 있는지 확인
+print(msg[:2]) # 슬라이싱
+print(msg[3:6]) # 슬라이싱 3부터 5까지
+print(len(msg)) # 문자열 갯수
+
+for i in range(len(msg)):
+    print(msg[i], end=" ")
+
+print()
+for x in msg:
+    print(x , end=" ")
+print()
+
+# 대문자만 출력
+for x in msg:
+    if x.isupper():
+        print(x, end=" ")
+print()
+
+# 소문자만 출력
+for x in msg:
+    if x.islower():
+        print(x, end=" ")
+print()
+
+# 공백없이 출력 >> 문자값 있는 것만 출력
+for x in msg:
+    if x.isalpha():
+        print(x, end=" ")
+print()
+
+# 아스키 넘버
+# 65~90
+tmp = "AZ"
+for x in tmp:
+    print(ord(x))
+# 97~ 122
+tmp = "az"
+for x in tmp:
+    print(ord(x))
+
+# 아스키 넘버에 해당하는 문자 출력
+tmp = 65
+print(chr(tmp))
+
