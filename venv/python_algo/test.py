@@ -18,15 +18,18 @@
 #
 # else:
 #     print("끝났습니당")
+#
+# a = [[0]*3]*3
+# print(a)
+# a[0][1] = 1
+# a[0][2] = 2
+#
+# for i in range(3):
+#     for j in range(3):
+#         print(a[i][j], end=" ")
+#     print()
+#
+# print(a[1][2])
 
-a = [[0]*3]*3
-print(a)
-a[0][1] = 1
-a[0][2] = 2
-
-for i in range(3):
-    for j in range(3):
-        print(a[i][j], end=" ")
-    print()
-
-print(a[1][2])
+for i in range (1, 10):
+    print(i)
