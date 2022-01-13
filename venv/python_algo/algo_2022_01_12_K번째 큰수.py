@@ -22,17 +22,40 @@ def Kmax(n,n_list,k):
         for y in range(x+1,n):
             for z in range(y+1,n):
                 sum_num = n_list[x] + n_list[y] + n_list[z]
-                list_sum.append(sum_num)
-    list_sum.sort()
-    print(list_sum)
+                if sum_num not in list_sum:
+                    list_sum.append(sum_num)
+    list_sum.sort(reverse=True)
+    # print('이건 내가 한거',list_sum)
     return list_sum[k-1]
+
+
+
+
+# 띠요용 
+#################################
+
+
+def sol_kmax(n,num_list,k):
+    res = set()
+
+    for i in range(n):
+        for j in range(i+1, n):
+            for m in range(j+1,n):
+                res.add(num_list[i] + num_list[j]+ num_list[m])
+    res = list(res)
+    res.sort(reverse=True)
+    # print('선생이 한거',res)
+    ans = res[k-1]
+    return ans
 
 
 n, k = map(int,input().split())
 num_list = list(map(int,input().split()))
 
-ans=Kmax(n,num_list,k)
+ans = sol_kmax(n,num_list,k)
+Kmax(n,num_list,k)
 
 print(ans)
 
-#################################
+## 실수 1. 글을 제대로 안읽음 K 번째 큰수면 내림차순으로 sort 해서 위에서부터 K번째 수를 찾아야지 무슨 올림차순으로 함?
+## 실수 2. 중복 제거를 안함 그냥 중복도 치는 줄 알았음 >> 글을 제대로 안읽었다
