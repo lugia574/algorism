@@ -22,12 +22,17 @@
 # N 명 평균을 구하고
 # 평균이 가장 가까운 학생은 몇번째 인지
 
+# 파이썬 round는 사사오입 방식을 사용하지 않음
+# round-half-even 방식으로 짝수에 근사하게 값을 냄 
+# 그래서 라운드 함수를 쓰지 말고
+# a + 0.5 를 더하고 int 변환해서 소수값을 더린다
+
 
 n = int(input())
 students = list(map(int,input().split()))
 
 def representative_value (n, students):
-    s_value = round(sum(students)/n)
+    s_value = int((sum(students)/n) + 0.5)
     min = float('inf')
 
     s_index = 0
@@ -55,7 +60,7 @@ print(s_value, s_index)
 #########################################
 
 def sol(n,students):
-    ave = round(sum(students) / n)
+    ave = int((sum(students)/n) + 0.5)
     min = float('inf')
 
     for index, x in enumerate(students):
