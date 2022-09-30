@@ -22,7 +22,7 @@ def PlatonicSolid (num, num2):
         for j in range(1, num2+1):
             cntList[i+j] += 1
 
-    print(cntList)
+    # print(cntList)
 
     for i in range(len(cntList)):
         if maxcnt < cntList[i]:
