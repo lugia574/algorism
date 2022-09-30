@@ -19,7 +19,7 @@ numList = map(int, input().split())
 
 
 
-def digit_sum(nList):
+def Py_digit_sum(numList):
     maxNum = 0
     ans = 0
 
@@ -32,4 +32,20 @@ def digit_sum(nList):
 
     return  ans
 
-print(digit_sum(numList))
+def sol_digit_sum(numList):
+    maxNum = 0
+    sum = 0
+    ans = 0
+
+    for num in numList:
+        while num > 0:
+            sum += num % 10
+            num = num // 10
+        if maxNum < sum:
+            maxNum = sum
+            ans = num
+        sum = 0
+
+    return  ans
+
+print(Py_digit_sum(numList))

@@ -64,6 +64,7 @@ def isPrime(X):
 
     return PrimeList
 
+
 numList = reverse(T, numList)
 # print(numList)
 
@@ -71,3 +72,35 @@ PrimeList = isPrime(numList)
 
 for i in PrimeList:
     print(i, end=" ")
+
+
+#################### solution ##########################
+
+def solutionReverse (num):
+    res = 0
+    while num> 0:
+        t = num % 10
+        res = res * 10 + t
+        num = num // 10
+
+    return res
+
+def solutionIsPrime (num):
+
+    if num == 1:
+        return False
+
+    for i in range(2, round(math.sqrt(num))+1):
+        if num % i == 0:
+            return False
+
+    return True
+
+n = int(input())
+a = list(map(int, input().split()))
+
+for x in a:
+    tmp = solutionReverse(x)
+    if solutionIsPrime(tmp):
+        print(tmp, end=" ")
+
