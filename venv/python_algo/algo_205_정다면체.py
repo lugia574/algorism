@@ -13,3 +13,29 @@
 # 5 6 7
 
 
+def PlatonicSolid (num, num2):
+    ans = []
+    maxcnt = 0
+    cntList = [0]*( num + num2 + 1)
+
+    for i in range(1, num+1):
+        for j in range(1, num2+1):
+            cntList[i+j] += 1
+
+    print(cntList)
+
+    for i in range(len(cntList)):
+        if maxcnt < cntList[i]:
+            maxcnt = cntList[i]
+            ans = []
+            ans.append(i)
+        elif maxcnt == cntList[i]:
+            ans.append(i)
+
+    ans.sort()
+    return ans
+
+ans = PlatonicSolid(6,20)
+
+for i in ans:
+    print(i, end=" ")
