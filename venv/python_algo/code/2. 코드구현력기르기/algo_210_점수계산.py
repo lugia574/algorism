@@ -32,11 +32,11 @@ def gradingFnc (scoreList):
         if i == 1:
             score += 1 + bonus
             bonus += 1
+
+            # bonus += 1
+            # score += bonus
         else:
             bonus = 0
-
-
-
     return score
 
 T = int(input())
