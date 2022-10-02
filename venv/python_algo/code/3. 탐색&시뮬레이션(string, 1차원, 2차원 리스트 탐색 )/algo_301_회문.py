@@ -24,31 +24,49 @@ import math
 
 
 def palindrome (str_list):
-    str_list = str_list.upper()
     ans = "NO"
     cnt = 0
     if len(str_list) % 2 == 0:
         for i in range(math.floor(len(str_list)/2)):
             if str_list[i] == str_list[len(str_list) -i -1]:
                 cnt += 1
+            else:
+                return ans
     else:
         for i in range(math.floor((len(str_list)-1)/2)):
             if str_list[i] == str_list[len(str_list) -i -1]:
                 cnt += 1
+            else:
+                return ans
+
     if cnt == len(str_list)//2:
         ans = "YES"
 
     return ans
 
+def solution (nList):
+    size = len(nList)
+
+    for j in range(size//2):
+        if nList[j]!= nList[-1-j]:
+            return "NO"
+
+    return "YES"
+
+def solutionPython (nList):
+
+    if nList == nList[::-1]:
+        return "YES"
+    else:
+        return "NO"
+
 N = int(input())
-str = []
+
 
 for i in range(N):
-    str.append(input())
-
-
-for t in range(len(str)):
-    ans = palindrome(str[t])
+    s = input()
+    s = s.upper()
+    ans = palindrome(s)
 
     print("#", end="")
-    print(t+1,ans)
+    print(i+1,ans)

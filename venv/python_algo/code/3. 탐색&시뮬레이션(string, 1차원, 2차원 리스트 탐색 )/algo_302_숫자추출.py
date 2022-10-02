@@ -25,7 +25,16 @@ def NumExtraction (str_list):
         if ord(i) >= 48 and ord(i) <= 56:
             tmp += i
 
-    return  int(tmp)
+    ans = int(tmp)
+
+    return  ans
+
+def solutionExtraction(str_list):
+    res = 0
+    for x in str_list:
+        if x.isdecimal():
+            res = res * 10 + int(x)
+
 
 def DivisorCnt (num):
     cnt = 0
