@@ -16,3 +16,16 @@
 # 2 3 6 7 9
 # ▣ 출력예제 1
 # # 1 2 3 3 5 6 7 9
+
+n = int(input())
+numListA = list(map(int,input().split()))
+m = int(input())
+numListB = list(map(int, input().split()))
+
+for x in numListB:
+    numListA.append(x)
+
+numListA.sort()
+
+for x in numListA:
+    print(x, end=" ")
