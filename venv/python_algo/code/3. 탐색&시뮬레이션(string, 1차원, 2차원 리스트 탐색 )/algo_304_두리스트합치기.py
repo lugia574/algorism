@@ -21,11 +21,20 @@ n = int(input())
 numListA = list(map(int,input().split()))
 m = int(input())
 numListB = list(map(int, input().split()))
+p1 = p2 = 0
+res = []
 
-for x in numListB:
-    numListA.append(x)
-
-numListA.sort()
+while p1<n and p2<m:
+    if numListA[p1] <= numListB[p2]:
+        res.append(numListA[p1])
+        p1 += 1
+    else :
+        res.append(numListB[p2])
+        p2 += 2
+if p1 < n:
+    res = res + numListA[p1:]
+if p2 < m :
+    res = res + numListB[p2:]
 
 for x in numListA:
     print(x, end=" ")

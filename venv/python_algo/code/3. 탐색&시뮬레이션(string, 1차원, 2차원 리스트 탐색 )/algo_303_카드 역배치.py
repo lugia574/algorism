@@ -18,12 +18,16 @@
 # ▣ 출력예제 1
 # 1 2 3 4 10 9 8 7 13 12 11 5 6 14 15 16 17 18 19 20
 
-card = [0 + i for i in range(0,21)]
+# card = [0 + i for i in range(21)]
+card = [range(21)]
+
 def Rearrangement (x, y):
     for i in range((y-x+1)//2):
         tmp = card[x+i]
         card[x+i] = card[y-i]
         card[y-i] = tmp
+
+        # card[x+i], card[y-i] = card[y-i], card[x-i]
 
 
 
@@ -31,5 +35,6 @@ for _ in range(10):
     x, y = map(int ,input().split())
     Rearrangement(x, y)
 
-for i in range(1,len(card)):
-    print(card[i], end=" ")
+card.pop(0)
+for i in card:
+    print(i, end=" ")

@@ -15,20 +15,47 @@
 def numSum(N,M, numList):
     res = 0
     for i in range(N):
-        plus = 0
-        for j in range(i,N):
-            if numList[j] == M:
+        if numList[i] == M:
+            res += 1
+            continue
+
+        plus = []
+        for j in range(i+1,N):
+            if numList[j] + sum(plus) == M:
                 res += 1
                 break
 
-            elif numList[j] + plus == M:
-                res += 1
+            elif numList[j] + sum(plus) > M:
                 break
+
             else:
-                plus += numList[j] + plus
+                plus.append(numList[j])
     return res
+
+def numSum2(N,M, numList):
+    cnt = 0
+    start = 0
+    end = 1
+    total = numList[0]
+
+    while True:
+       if total < M :
+           if end < N:
+               total += numList[end]
+               end += 1
+           else:
+               break
+       elif total == M:
+           cnt += 1
+           total -= numList[start]
+           start += 1
+       else:
+           total -= numList[start]
+           start += 1
+
+    return cnt
 
 N, M = map(int,input().split())
 
 numList = list(map(int, input().split()))
-print(numSum(N,M,numList))
+print(numSum2(N,M,numList))

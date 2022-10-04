@@ -30,6 +30,13 @@
 #     print()
 #
 # print(a[1][2])
+#
+# for i in range (1, 10):
+#     print(i)
 
-for i in range (1, 10):
-    print(i)
+testList = [1,2,3,4,5]
+testList.pop()
+print(testList)
+
+testList.pop(0)
+print(testList)
