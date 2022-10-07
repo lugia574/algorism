@@ -41,6 +41,22 @@ def arrSum(N,arr):
     return res
 
 
+def solution(N,arr):
+    res = 0
+    s = e = N//2
+    for i in range(N):
+        for j in range(s, e+1):
+            res+= arr[i][j]
+        if i < N//2:
+            s -= 1
+            e += 1
+        else:
+            s += 1
+            e -= 1
+
+    return  res
+
+
 N = int(input())
 
 arr = [0 for _ in range(N)]
