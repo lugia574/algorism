@@ -16,16 +16,19 @@
 # ▣ 출력예제 1
 # 155
 
+
 def arrMaxSum(N, arr):
-    res = 0
+    arr = np.array(arr)
+    res = -2147000000
     for i in range(N):
         if sum(arr[i][:]) > res:
             print("가로: ",arr[i][:],sum(arr[i][:]))
             res = sum(arr[i][:])
 
-        print("세로: ", arr[:][i], sum(arr[:][i]))
-        if sum(arr[:][i])> res:
-            res = sum(arr[:][i])
+
+            print("세로: ", arr[0:N][i], sum(arr[0:N][i]))
+            if sum(arr[0:N][i])> res:
+                res = sum(arr[:][i])
     x1 = 0
     x2 = 0
     for i in range(N):
@@ -39,14 +42,39 @@ def arrMaxSum(N, arr):
 
     return res
 
+def arrLargest(N, arr):
+    largest = -2147000000
+    for i in range(N):
+        sum1 = sum2 = 0
+        for j in range(N):
+            sum1 += arr[i][j]
+            sum2 += arr[j][i]
+        if sum1 > largest:
+            largest = sum1
+        if sum2 > largest:
+            largest = sum2
+
+    x1 = x2 = 0
+    for i in range(N):
+        x1 += arr[i][i]
+        x2 += arr[i][N - i - 1]
+
+    if x1 > largest:
+        largest = x1
+    if x2 > largest:
+        largest = x2
+
+    return largest
 
 N = int(input())
 
-arr = [0 for _ in range(N)]
+arr = [list(map(int,input().split())) for _ in range(N)]
 
-for i in range(N):
-    arr[i] = list(map(int, input().split()))
+# arr = [0 for _ in range(N)]
+#
+# for i in range(N):
+#     arr[i] = list(map(int, input().split()))
 
-res = arrMaxSum(N,arr)
+res = arrLargest(N,arr)
 
 print(res)

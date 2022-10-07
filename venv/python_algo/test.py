@@ -33,10 +33,26 @@
 #
 # for i in range (1, 10):
 #     print(i)
+#
+# testList = [1,2,3,4,5]
+# testList.pop()
+# print(testList)
+#
+# testList.pop(0)
+# print(testList)
 
-testList = [1,2,3,4,5]
-testList.pop()
-print(testList)
+# testList = [[0]*5 for i in range(5)]
+#
+#
+# for i in range(5):
+#     for j in range(5):
+#         testList[i][j] = int(input())
 
-testList.pop(0)
-print(testList)
+N = int(input())
+
+arr = [0 for _ in range(N)]
+
+for i in range(N):
+    arr[i] = list(map(int, input().split()))
+
+print(arr[:][0])
