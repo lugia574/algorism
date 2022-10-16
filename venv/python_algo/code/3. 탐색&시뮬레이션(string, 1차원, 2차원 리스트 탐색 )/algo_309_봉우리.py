@@ -34,9 +34,12 @@ def peaksCounter(n,peaksList):
     cnt = 0
     peaksList = listAppend(n,peaksList)
 
+    dx = [-1, 0, 1, 0]
+    dy = [0, 1, 0, -1]
+
     for i in range(1 , n+1):
         for j in range(1, n+1):
-            if peaksList[i][j] > peaksList[i-1][j] and peaksList[i][j] > peaksList[i][j-1] and peaksList[i][j] > peaksList[i+1][j] and peaksList[i][j] > peaksList[i][j+1]:
+            if all(peaksList[i][j]> peaksList[i+dx[k]][j+dy[k]] for k in range(4)):
                 cnt +=1
 
     return cnt
