@@ -29,11 +29,23 @@ def binarySearch(n, m, arr):
                     return (i+1 + n//2)
     return n
 
+def solution(n,m,arr):
+    arr.sort()
+    lt = 0
+    rt = n-1
+    while lt <= rt:
+        mid = (lt + rt) // 2
+        if arr[mid] == m:
+            return mid + 1
+        elif arr[mid] > m:
+            rt = mid - 1
+        else :
+            lt = mid + 1
 
 N, M = map(int, input().split())
 
 num_list = list(map(int, input().split()))
 
-ans = binarySearch(N, M, num_list)
+ans = solution(N, M, num_list)
 
 print(ans)
