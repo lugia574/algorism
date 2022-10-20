@@ -28,18 +28,20 @@
 # 예제설명) 802cm 랜선에서 4개, 743cm 랜선에서 3개, 457cm 랜선에서 2개, 539cm 랜선에서 2개를
 # 잘라내 모두 11개를 만들 수 있다.
 
+def Counter (mid):
+    cnt = 0
+    for i in lan:
+        cnt += i // mid
+    return cnt
 
-
-def lanCutFunc(k,n,lan):
+def LanCutFunc(k,n,lan):
     start_num = 1
     end_num = max(lan)
     res = 1
 
     while start_num <=  end_num:
         mid = (start_num + end_num) // 2
-        cnt = 0
-        for i in lan:
-            cnt += i//mid
+        cnt = Counter(mid)
 
         if cnt < n:
             end_num = mid-1
@@ -57,5 +59,5 @@ lanList = []
 for _ in range (K):
     lanList.append(int(input()))
 
-ans = lanCutFunc(K, N, lanList)
+ans = LanCutFunc(K, N, lanList)
 print(ans)
