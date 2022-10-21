@@ -9,7 +9,7 @@
 # ▣ 출력설명
 # 첫 번째 줄부터 DVD의 최소 용량 크기를 출력하세요.
 # ▣ 입력예제 1
-# 9 3
+# 9 9
 # 1 2 3 4 5 6 7 8 9
 # ▣ 출력예제 1
 # 17
@@ -18,25 +18,13 @@
 # 1 2 3 / 4 5 6 / 7 8 9  >> 6 / 15 / 24
 def dvdCuttingFnc (n,m,arr):
     res = 0
-
     start = 1
     end = sum(arr)
 
     while start <= end :
         mid = (start + end) // 2
-        dvd = [0]*m
-        tmp = 0
-        st = 0
-        for i in range(m):
-            for j in range(st,n):
-                if dvd[i] + arr[j] <= mid:
-                    dvd[i] += arr[j]
-                    tmp += 1
-                else:
-                    st = tmp
-                    break
 
-        if sum(dvd) == sum(arr):
+        if mid >= max(arr) and counterFnc(mid, arr) <= m:
             end = mid - 1
             res = mid
         else:
@@ -62,7 +50,8 @@ def solution (n,m,arr):
 
     while lt <= rt:
         mid = (lt + rt) // 2
-        if counterFnc(mid, arr) <= m:
+        maxMusic = max(arr)
+        if mid <= maxMusic and counterFnc(mid, arr) <= m:
             res = mid
             rt = mid - 1
         else:
@@ -76,3 +65,6 @@ musicList = list(map(int, input().split()))
 dvdMinLength = dvdCuttingFnc(N,M,musicList)
 
 print(dvdMinLength)
+
+
+
