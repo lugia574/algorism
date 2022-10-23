@@ -40,6 +40,7 @@ def meetingFnc (n, arr):
     return  res
 
 
+# 시발 지리네 난 2중 포문 밖에 생각 안했는데 개 시발 나는 아직도 한참 멀었다 머리통을 존나 때려야해
 def solution (arr):
     cnt = 0
     endTime = 0
