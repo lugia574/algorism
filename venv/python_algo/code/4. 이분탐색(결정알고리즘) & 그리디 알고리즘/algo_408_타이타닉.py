@@ -18,14 +18,36 @@
 # 3
 
 # 50 60 70 90 100 // 140
+from collections import deque
+
+# deque 를 사용하면 훨씬 효율적으로 할 수 있음
+# 일반적인 list 는 pop 을 할 시 나머지 요소들이 다 앞으로 땡겨지는 연산을 하는데
+# deque 는 약간 linked list랑 비슷한듯? 아닌가??
+# https://www.leafcats.com/125 여기에 있긴함
+def solution(m,p):
+    p = deque(p)
+    cnt = 0
+    while p:
+        if len(p)== 1:
+            cnt += 1
+            break
+        if p[0]+ p[-1] > m:
+            p.pop()
+            cnt += 1
+        else:
+            p.popleft()
+            p.pop()
+            cnt+=1
+    return cnt
+
 
 def titanicSurvive(m,p):
     cnt = 0
 
     while len(p) > 1:
-        p.sort()
         minW = p[0]
         maxW = p[-1]
+        # p[len(p)-1]
 
         if minW + maxW <= m:
             cnt += 1
