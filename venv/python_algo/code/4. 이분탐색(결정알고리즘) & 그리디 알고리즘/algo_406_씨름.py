@@ -34,6 +34,24 @@ def selectPlayer(n, arr):
                 break
     return cnt
 
+# 키를 높은 순서대로 싹 정렬을 해
+# 그럼 가장 키가 큰 사람은 무조건 확정이야
+# 이제 2번째 키큰 사람은 1번째 사람보다 몸무게만 크면 채용이야
+# 마찬가지로 3번째도 2번째 보다 몸무게만 크면 됨
+# 즉 키 순으로 내림차순으로 정렬하고 몸무게만 비교하면 된다~ 반복문 하나만 써도 된다~~
+def solution (arr):
+    arr.sort(reverse = True)
+
+    largest = 0
+    cnt = 0
+
+    for _, h in arr:
+        if h> largest:
+            largest = h
+            cnt += 1
+
+    return cnt
+
 def dataInput():
     N = int(input())
     playerList = []
@@ -45,4 +63,7 @@ N,playerList = dataInput()
 playerList.sort()
 ans = selectPlayer(N,playerList)
 print(ans)
+
+ans2 = solution(playerList)
+print(ans2)
 
