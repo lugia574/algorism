@@ -61,5 +61,3 @@ res = RSCunterFnc(n, arr)
 
 for i in res:
     print(i, end=" ")
-
-0
