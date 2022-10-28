@@ -20,7 +20,7 @@
 # ) 이거면 문이 닫 닫히는거니까  이전 요소랑 비교 해서
 # 이전 요소가 ( 이거면  () 이니까 레이저임 스택에서 pop 하고 남은 len(stack) 값 cnt+= 하는거임
 # 이전 요소가 ) 이거면 )) 이니까 레이저가 아니라 바가 끝나는 지점이라는 소리니까
-# 스택에 pop 하고 바 하나 끝났다는 소리니까 cnt += 1 해주는 거임
+# 스택에 쌓여 있는거 하나 pop 하고 그게 바 하나 끝났다는 소리니까 cnt += 1 해주는 거임
 # 이럼 끝
 def cuttingFnc(arr):
     stack = [arr[0]]
@@ -29,13 +29,13 @@ def cuttingFnc(arr):
         if arr[i] == "(" :
             stack.append(arr[i])
         elif arr[i] == ")":
+            stack.pop()
             if arr[i-1] == "(":
-                stack.pop()
-                if stack:
-                    cnt += len(stack)
+                cnt += len(stack)
             elif arr[i-1] == ")":
-                stack.pop()
                 cnt += 1
+        else:
+            print("error")
     return  cnt
 
 def inputFnc ():
