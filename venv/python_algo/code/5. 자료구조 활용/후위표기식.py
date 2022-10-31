@@ -26,7 +26,7 @@ def postfixFnc(arr):
     stack = []
 
     res = ""
-    for x in a:
+    for x in arr:
         if x.isdecimal():
             res += x
         else:
