@@ -10,6 +10,8 @@
 # 8 3
 # ▣ 출력예제 1
 # 7
+# 큐 를 사용해야해
+from collections import deque
 
 def savingPrincess(n, k):
     arr = [i for i in range(1,n+1)]
@@ -26,10 +28,26 @@ def savingPrincess(n, k):
             index = 0
     return arr[0]
 
+def solution(n,k):
+    arr = [i for i in range(1, n+1)]
+    dq = deque(arr)
+    cnt = 0
+    while len(dq) > 1:
+        cnt += 1
+        cur = dq.popleft()
+        if cnt != k:
+            dq.append(cur)
+        else:
+            cnt = 0
+
+    return dq[0]
+
+
 def inputFnc():
     n, m = map(int,input().split())
     return  n, m
 
 N, K = inputFnc()
-res = savingPrincess(N,K)
+# res = savingPrincess(N,K)
+res = solution(N,K)
 print(res)
