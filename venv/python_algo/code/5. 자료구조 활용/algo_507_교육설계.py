@@ -35,14 +35,12 @@ from collections import deque
 def classDisgn(m, arr):
     res = "NO"
     m = deque(m)
-    arr = deque(arr)
 
-    while m and arr:
-        if m[0] == arr[0]:
+    for i in arr:
+        if m[0] == i:
             m.popleft()
-        elif arr[0] in m:
-                break
-        arr.popleft()
+        elif i in m:
+            break
 
     if not m:
         res = "YES"

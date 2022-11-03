@@ -17,22 +17,15 @@
 # ▣ 출력예제 1
 # YES
 def anagram(arr1, arr2):
-    agArr1 = {}
-    agArr2 = {}
+    agArr1 = dict()
+    agArr2 = dict()
     cnt = 0
     for i in range(len(arr1)):
-        if arr1[i] in agArr1:
-            agArr1[arr1[i]] += 1
-        else:
-            agArr1[arr1[i]] = 1
-
-        if arr2[i] in agArr2:
-            agArr2[arr2[i]] += 1
-        else:
-            agArr2[arr2[i]] = 1
+        agArr1[arr1[i]] = agArr1.get(arr1[i],0) + 1
+        agArr2[arr2[i]] = agArr2.get(arr2[i], 0) + 1
 
     for key in agArr1.keys():
-        if key in agArr2 and agArr1[key] == agArr2[key]:
+        if key in agArr2.keys() and agArr1[key] == agArr2[key]:
             cnt += 1
         else:
             break
