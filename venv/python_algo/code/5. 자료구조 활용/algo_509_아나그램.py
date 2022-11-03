@@ -33,13 +33,65 @@ def anagram(arr1, arr2):
         return "YES"
     return "NO"
 
+def solution (arr1, arr2):
+    strDic = dict()
+    res = "YES"
+
+    for x in arr1:
+        strDic[x] = strDic.get(x,0) + 1
+    for x in arr2:
+        strDic[x] = strDic.get(x,0) - 1
+
+    for x in a:
+        if strDic[x] > 0:
+            res = "NO"
+            break
+
+    return res
+
+# 리스트 해쉬로 풀기
+# 아스키 넘버를 이용해서 풀꺼임
+# A~Z 가 65 ~ 90 번임
+# a~z 가 97 ~ 122 번임
+# 대문자-아스키는 65 를 빼주면 01234~25 이렇게 올라가는 index로 넣을 수 있음
+# 소문자-아스키는 이제 26 부터 시작하니까 71을 빼주면 26/27/28 ~ 이렇게 할 수 잇음
+# C++ 이 이렇게 푸는듯
+def solution2(arr1, arr2):
+    str1 = [0]*52
+    str2 = [0]*52
+    res = "NO"
+    for x in arr1:
+        # 대문자 일때
+        if x.isupper():
+            str1[ord(x)-65] += 1
+
+        # 소문자 일때
+        else:
+            str1[ord(x)-71] += 1
+
+    for x in arr2:
+        # 대문자 일때
+        if x.isupper():
+            str2[ord(x) - 65] += 1
+
+        # 소문자 일때
+        else:
+            str2[ord(x) - 71] += 1
+
+    for i in range(52):
+        if str1[i] != str2[i]:
+            break
+    else:
+        res = "YES"
+    return res
+
 def inputFnc():
-    arr1 = list(map(str,input()))
-    arr2 = list(map(str,input()))
+    arr1 = input()
+    arr2 = input()
 
     return arr1, arr2
 
 arr1, arr2 = inputFnc()
 
-res =anagram(arr1, arr2)
+res =solution2(arr1, arr2)
 print(res)
