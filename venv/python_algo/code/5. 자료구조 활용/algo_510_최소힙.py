@@ -23,19 +23,24 @@
 # 5
 # 2
 
+# 힙을 쓰는 이유
+# https://frootjy.tistory.com/22
 
-
+import heapq as hq
 
 def minHeap():
     arr = []
     while True:
-        tmp = int(input())
-        if tmp == -1:
+        num = int(input())
+        if num == -1:
             break
+        if num == 0:
+            if len(arr) == 0:
+                print(-1)
+            else:
+                print(hq.heappop(arr))
         else:
-            arr.append(tmp)
+            hq.heappush(arr,num)
 
-    return res
 
 arr = minHeap()
-print(arr)
