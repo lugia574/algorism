@@ -16,6 +16,8 @@
 # 1 3 5 6 7 10
 # ▣ 출력예제 1
 # YES
+import sys
+
 
 def inputFnc():
     num = int(input())
@@ -33,9 +35,9 @@ def DFS_sum(n):
                 sum2 += arr[i]
 
         if sum1 == sum2:
-            return result.append("YES")
-        else:
-            return result.append("NO")
+            print("YES")
+            sys.exit(0)
+
     else:
         check[n] = 1
         DFS_sum(n + 1)
@@ -46,9 +48,4 @@ def DFS_sum(n):
 if __name__ == "__main__":
     N,arr = inputFnc()
     check = [0] * (N + 1)
-    result = []
     DFS_sum(0)
-    if "YES" in result:
-        print("YES")
-    else:
-        print("NO")
