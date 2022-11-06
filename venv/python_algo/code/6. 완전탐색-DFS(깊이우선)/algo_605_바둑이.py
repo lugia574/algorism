@@ -18,16 +18,18 @@
 # ▣ 출력예제 1
 # 242
 import sys
-def DFS(c, index , s):
+def DFS(index, s, tsum):
+    global maxsum
+    if s + (total - tsum) < maxsum:
+        return
     if s > c:
         return
     elif index == n :
-        if maxsum[0] < s:
-            maxsum.pop()
-            maxsum.append(s)
+        if s > maxsum:
+            maxsum = s
     else:
-        DFS(c, index+1, s+arr[index])
-        DFS(c, index+1, s)
+        DFS(index+1, s+arr[index], tsum + arr[index])
+        DFS(index+1, s, tsum + arr[index])
 
 def inputFnc ():
     c, n = map(int,input().split())
@@ -41,7 +43,8 @@ def inputFnc ():
 if __name__ == "__main__":
     c,n,arr = inputFnc()
     arr.sort(reverse=True)
-    maxsum = [0]
-    DFS(c, 0, 0)
+    maxsum = -2147000000
+    total = sum(arr)
+    DFS(0, 0, 0)
 
-    print(maxsum[0])
+    print(maxsum)
