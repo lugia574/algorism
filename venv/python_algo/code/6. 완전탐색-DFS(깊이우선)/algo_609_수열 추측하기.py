@@ -17,14 +17,10 @@ def inputFnc():
     n, res = map(int, input().split())
     return  n, res
 
-def pGuess (index):
+def pGuess (index, arrSum):
+    if arrSum > res:
+        return
     if index == n:
-        arrSum = 0
-        for i in range(n):
-            arrSum += nArr[i] * w[i]
-            if arrSum > res:
-                return
-
         if arrSum == res:
             for i in nArr:
                 print(i, end=" ")
@@ -33,7 +29,7 @@ def pGuess (index):
         for i in range(1,n+1):
             if i not in nArr:
                 nArr[index] = i
-                pGuess(index+1)
+                pGuess(index+1, arrSum + (nArr[index] * w[index]))
                 nArr[index] = 0
 
 
@@ -43,5 +39,5 @@ if __name__ == "__main__":
     w = [1] * n
     for i in range(1, n):
         w[i] = round(w[i-1] * (n-i) / i)
-    pGuess(0)
+    pGuess(0, 0)
 
