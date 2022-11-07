@@ -37,6 +37,6 @@ def inputFnc():
 if __name__ == "__main__":
     n, coinArr, m = inputFnc()
     coinArr.sort(reverse=True)
-    minExchageCnt = 2147483647
+    minExchageCnt = 21470000000
     coinExchangeFnc(0, 0)
     print(minExchageCnt)
