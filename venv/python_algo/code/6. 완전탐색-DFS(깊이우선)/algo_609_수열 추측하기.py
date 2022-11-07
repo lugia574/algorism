@@ -22,6 +22,8 @@ def pGuess (index):
         arrSum = 0
         for i in range(n):
             arrSum += nArr[i] * w[i]
+            if arrSum > res:
+                return
 
         if arrSum == res:
             for i in nArr:
