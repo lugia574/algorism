@@ -27,6 +27,7 @@ def numsCombination(l, numsSum, w):
             check.append(nArr[i])
             numsCombination(l+1, numsSum + nArr[i], i + 1)
             check.pop()
+
 def inputFnc():
     n, k = map(int,input().split())
     nArr = list(map(int,input().split()))
@@ -36,7 +37,6 @@ def inputFnc():
 if __name__ =="__main__":
     n, k, nArr, m = inputFnc()
     check = []
-    mcheck = []
     cnt = 0
 
     numsCombination(0, 0, 0)
