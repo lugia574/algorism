@@ -40,12 +40,12 @@ def routeSearch(node):
 
 if __name__ == "__main__":
     cnt = 0
-    check = [0] *(n+1)
     n,m = map(int,input().split())
+    check = [0] * (n+1)
     g = [[0] *(n+1) for _ in range(n+1)]
     for _ in range(m):
         r, c = map(int, input().split())
         g[r][c] = 1
-
+    check[1] = 1
     routeSearch(1)
     print(cnt)
