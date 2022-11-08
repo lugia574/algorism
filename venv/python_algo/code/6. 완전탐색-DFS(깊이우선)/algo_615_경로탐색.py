@@ -33,14 +33,14 @@ def routeSearch(node):
         cnt +=1
     else:
         for i in range(1, n+1):
-            if g[node][i] == 1 and i not in check:
-                check.append(node)
+            if g[node][i] == 1 and check[i] == 0:
+                check[i] = 1
                 routeSearch(i)
-                check.pop()
+                check[i] = 0
 
 if __name__ == "__main__":
     cnt = 0
-    check = []
+    check = [0] *(n+1)
     n,m = map(int,input().split())
     g = [[0] *(n+1) for _ in range(n+1)]
     for _ in range(m):
