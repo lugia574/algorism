@@ -15,31 +15,18 @@
 # 6
 # ▣ 출력예제 1
 # 2
-import copy
 
-
-def numsCombination(index, numsSum):
+def numsCombination(l, numsSum, w):
     global cnt
-    if index == k:
+    if l == k:
         if numsSum % m == 0:
-            if mcheck:
-                for x in mcheck:
-                    mCnt = 0
-                    for i in check:
-                        if i in x:
-                            mCnt += 1
-                    if mCnt == k:
-                        return
-            tmp = copy.copy(check)
-            mcheck.append(tmp)
             cnt += 1
 
     else:
-        for i in nArr:
-            if i not in check:
-                check.append(i)
-                numsCombination(index+1, numsSum + i)
-                check.pop()
+        for i in range(w, n):
+            check.append(nArr[i])
+            numsCombination(l+1, numsSum + nArr[i], i + 1)
+            check.pop()
 def inputFnc():
     n, k = map(int,input().split())
     nArr = list(map(int,input().split()))
@@ -52,5 +39,5 @@ if __name__ =="__main__":
     mcheck = []
     cnt = 0
 
-    numsCombination(0, 0)
+    numsCombination(0, 0, 0)
     print(cnt)

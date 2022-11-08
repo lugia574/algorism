@@ -18,30 +18,21 @@
 # 6
 import copy
 
-
-def combination(index):
+def combination2(l, w):
     global cnt
-    if index == m:
-        if mArr:
-            for i in mArr:
-                mCnt = 0
-                for j in check:
-                    if j in i:
-                        mCnt += 1
-                if mCnt == m:
-                    return
+    if l ==  m :
         for i in check:
             print(i, end=" ")
         print()
         cnt += 1
-        tmp = copy.copy(check)
-        mArr.append(tmp)
+
     else:
-        for i in range(1, n+1):
-            if i not in check:
-                check[index] = i
-                combination(index+1)
-                check[index] = 0
+        for i in range(w, n + 1):
+            check[l] = i
+            combination2(l+1, i+1)
+            check[l] = 0
+
+
 
 if __name__ == "__main__":
     n,m = map(int,input().split())
@@ -49,5 +40,6 @@ if __name__ == "__main__":
     mArr = []
     cnt = 0
 
-    combination(0)
+    #combination(0)
+    combination2(0,1)
     print(cnt)
