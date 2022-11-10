@@ -16,29 +16,31 @@
 # 7 4
 # ▣ 출력예제 1
 # 41
+
+
 def maxPointDFS(l,pSum, tSum):
     global maxPoint
 
     if tSum > t:
-        pSum = pSum - problem[l-1][1]
+        return
+
+    if l == n:
         if maxPoint < pSum:
             maxPoint = pSum
 
     else:
-        for i in range(l, n):
-            if check[i] == 0:
-                check[i] = 1
-                maxPointDFS(i+1, pSum+problem[i][1], tSum+problem[i][2])
-                check[i] = 0
+        maxPointDFS(l + 1, pSum + pv[l], tSum + pt[l])
+        maxPointDFS(l + 1, pSum, tSum)
 
 
 if __name__ == "__main__":
     n,t = map(int,input().split())
-    problem = []
-    for i in range(n):
+    pt = []
+    pv = []
+    for _ in range(n):
         point,time = map(int, input().split())
-        problem.append([i,point,time])
+        pt.append(time)
+        pv.append(point)
     maxPoint = -21467000000
-    check = [0]*n
     maxPointDFS(0, 0, 0)
     print(maxPoint)
