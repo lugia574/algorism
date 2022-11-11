@@ -42,13 +42,30 @@ def division(l, a, b, c):
         division(l+1, a, b + coinArr[l], c)
         division(l+1, a, b, c + coinArr[l])
 
+def solution(l):
+    global res
+    if l == n:
+        gap = max(people) - min(people)
+        if gap < res:
+            tmp = set()
+            for i in people:
+                tmp.add(i)
+            if len(tmp) == 3:
+                res = gap
+    else:
+        for i in range(3):
+            people[i] += coinArr[l]
+            solution(l + 1)
+            people[i] -= coinArr[l]
 if __name__ == "__main__":
     n = int(input())
     coinArr = []
     for _ in range(n):
         coinArr.append(int(input()))
 
-    res = 21467000000
-    maxScore = 21467000000
+    res = 2147000000
+    maxScore = 2147000000
+    people = [0] * 3
     division(0,0,0,0)
+    solution(0)
     print(res)
