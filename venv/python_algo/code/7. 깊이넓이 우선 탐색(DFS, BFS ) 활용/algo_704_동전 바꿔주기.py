@@ -39,6 +39,16 @@ def coinExchangeDFS(l,coinSum):
                 coinExchangeDFS(i,coinSum + p[i])
                 c[i] += 1
 
+def solution(l, cSum):
+    global cnt
+    if cSum > t:
+        return
+    if l == k:
+        cnt += 1
+    else:
+        for i in range(c[l]+1):
+            solution(l+1, cSum + (p[l] * i))
+
 if __name__ == "__main__":
     t = int(input())
     k = int(input())
