@@ -26,7 +26,7 @@ def scaleDFS(l, wSum):
         if 0 < wSum <= s:
             waterArr.add(wSum)
     else:
-        scaleDFS(l+1, wSum + w[l])
+        scaleDFS(l + 1, wSum + w[l])
         scaleDFS(l + 1, wSum - w[l])
         scaleDFS(l + 1, wSum)
 
