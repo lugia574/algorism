@@ -52,7 +52,6 @@ if __name__ == "__main__":
     for _ in range(7):
         tmp = list(map(int,input().split()))
         board.append(tmp)
-    dis = [[0] * 7 for _ in range(7)]
     q = deque()
     board[0][0] = 1
     q.append([0,0])
