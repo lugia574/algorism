@@ -59,7 +59,7 @@
 
 def fnc(arr, n):
     res = False
-    numArr = [0] * (n+1)
+    numArr = [0] * (n + 1)
 
     for x in arr:
         numArr[x] = 1
@@ -75,19 +75,19 @@ def fnc(arr, n):
     return res
 
 
-
-n = int(input())
-k = int(input())
-arr = list(map(int,input().split(",")))
-resArr = []
-cnt = 0
-for i in range(n):
-    for j in range(i+1,n+1):
-        res = fnc(arr[i:j],n)
-        if res == True:
-            cnt += 1
-print(cnt)
-print(resArr)
+if __name__ == "__main__":
+    n = int(input())
+    k = int(input())
+    arr = list(map(int, input().split(",")))
+    resArr = []
+    cnt = 0
+    for i in range(n):
+        for j in range(i + 1, n + 1):
+            res = fnc(arr[i:j], n)
+            if res:
+                cnt += 1
+    print(cnt)
+    print(resArr)
 
 #
 # 10
