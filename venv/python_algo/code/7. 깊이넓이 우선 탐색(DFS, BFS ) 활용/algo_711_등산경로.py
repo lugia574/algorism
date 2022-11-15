@@ -64,8 +64,8 @@ if __name__ == "__main__":
     for _ in range(n):
         tmp = list(map(int,input().split()))
         mountaion.append(tmp)
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
+    dx = [-1, 0, 1, 0]
+    dy = [0, 1, 0, -1]
     minM,s,maxM,e = minMaxIndex()
     check = [[0] * n for _ in range(n)]
     cnt = 0

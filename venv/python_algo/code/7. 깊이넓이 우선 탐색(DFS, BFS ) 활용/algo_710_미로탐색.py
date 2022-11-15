@@ -43,8 +43,8 @@ def mazeDFS(l):
 
 if __name__ == "__main__":
     board = []
-    dx = [1, -1, 0 , 0]
-    dy = [0, 0, 1, -1]
+    dx = [-1, 0, 1, 0]
+    dy = [0, 1, 0, -1]
     for _ in range(7):
         tmp = list(map(int,input().split()))
         board.append(tmp)
