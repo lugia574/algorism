@@ -35,13 +35,15 @@ def mazeBFS():
         for x in range(length):
             node = q.popleft()
             for i in range(4):
-                if 0 <= node[0] + dx[i] < 7 and 0 <= node[1] + dy[i] < 7:
-                    if [node[0] + dx[i], node[1] + dy[i]] == [6,6]:
+                x = node[0] + dx[i]
+                y = node[1] + dy[i]
+                if 0 <= x < 7 and 0 <= y < 7:
+                    if [x, y] == [6,6]:
                         l += 1
                         return l
-                    if board[node[0] + dx[i]][node[1] + dy[i]] == 0:
-                        q.append([node[0]+dx[i], node[1]+dy[i]])
-                        board[node[0] + dx[i]][node[1] + dy[i]] = 2
+                    if board[x][y] == 0:
+                        q.append([x, y])
+                        board[x][y] = 2
         l += 1
     return -1
 

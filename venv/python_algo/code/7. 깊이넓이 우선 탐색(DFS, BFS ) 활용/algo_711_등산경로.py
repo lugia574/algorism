@@ -47,12 +47,14 @@ def mDFS(l):
         cnt +=1
     else:
         for i in range(4):
-            if 0<=l[0]+dx[i]<n and 0<=l[1]+dy[i]<n:
-                if check[l[0]+dx[i]][l[1]+dy[i]] == 0:
-                    if mountaion[l[0]][l[1]] < mountaion[l[0]+dx[i]][l[1]+dy[i]]:
-                        check[l[0] + dx[i]][l[1] + dy[i]] = 1
-                        mDFS([l[0]+dx[i],l[1]+dy[i]])
-                        check[l[0] + dx[i]][l[1] + dy[i]] = 0
+            x = l[0] + dx[i]
+            y = l[1] + dy[i]
+            if 0<= x <n and 0<= y <n:
+                if check[x][y] == 0:
+                    if mountaion[l[0]][l[1]] < mountaion[x][y]:
+                        check[x][y] = 1
+                        mDFS([x,y])
+                        check[x][y] = 0
 
 
 

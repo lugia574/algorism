@@ -33,11 +33,13 @@ def mazeDFS(l):
         cnt+=1
     else:
         for i in range(4):
-            if 0 <= l[0]+dx[i] < 7 and 0 <= l[1] + dy[i] < 7:
-                if board[l[0]+dx[i]][l[1] + dy[i]] == 0:
-                    board[l[0]+dx[i]][l[1] + dy[i]] = 2
-                    mazeDFS([l[0] + dx[i], l[1] + dy[i]])
-                    board[l[0] + dx[i]][l[1] + dy[i]] = 0
+            x = l[0] + dx[i]
+            y = l[1] + dy[i]
+            if 0 <= x < 7 and 0 <= y < 7:
+                if board[x][y] == 0:
+                    board[x][y] = 2
+                    mazeDFS([x, y])
+                    board[x][y] = 0
 
 if __name__ == "__main__":
     board = []
