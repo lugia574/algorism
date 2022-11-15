@@ -38,9 +38,6 @@ def groupDFS(l):
                 apartment[x][y] = groupNum
                 groupDFS([x,y])
 
-def groupBFS():
-    return
-
 if __name__ == "__main__":
     n = int(input())
     apartment = []
