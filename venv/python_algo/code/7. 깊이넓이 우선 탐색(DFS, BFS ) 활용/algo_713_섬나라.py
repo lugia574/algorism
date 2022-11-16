@@ -42,8 +42,6 @@ def islandCnt():
                     q.append([xx,yy])
 
 
-
-
 if __name__ == "__main__":
     n = int(input())
     island = []
