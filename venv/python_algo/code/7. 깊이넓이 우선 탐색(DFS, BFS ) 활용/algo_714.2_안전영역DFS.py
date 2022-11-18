@@ -33,7 +33,8 @@ if __name__ == "__main__":
         tmp = list(map(int, input().split()))
         arr.append(tmp)
 
-    for cutLine in range(101):
+    maxNum = max(map(max, arr))
+    for cutLine in range(maxNum):
         for i in range(n):
             for j in range(n):
                 cnt = 0

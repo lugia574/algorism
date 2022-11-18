@@ -51,9 +51,9 @@ if __name__ == "__main__":
         tmp = list(map(int, input().split()))
         arr.append(tmp)
 
+    maxNum = max(map(max, arr))
 
-
-    for x in range(101):
+    for x in range(maxNum):
         for i in range(n):
             for j in range(n):
                 if arr[i][j] > x:
