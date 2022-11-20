@@ -7,17 +7,20 @@
 # 8 9 5 2 7
 # ▣ 출력예제 1
 # 5
+import sys
+
+sys.setrecursionlimit(10**6)
 
 
 def safeSearchDFS(l):
     global cnt
+    check[l[0]][l[1]] = groupNum
     cnt += 1
     for i in range(4):
         x = l[0] + dx[i]
         y = l[1] + dy[i]
         if 0 <= x < n and 0 <= y < n:
             if arr[x][y] > cutLine and check[x][y] == 0:
-                check[x][y] = groupNum
                 safeSearchDFS([x, y])
 
 if __name__ == "__main__":
@@ -25,7 +28,7 @@ if __name__ == "__main__":
     arr = []
     res = []
     maxCnt = -2147000000
-    check = [[0] * n for _ in range(n)]
+
     dx = [1, 0, -1, 0]
     dy = [0, 1, 0, -1]
     groupNum = 2
@@ -35,6 +38,7 @@ if __name__ == "__main__":
 
     maxNum = max(map(max, arr))
     for cutLine in range(maxNum):
+        check = [[0] * n for _ in range(n)]
         for i in range(n):
             for j in range(n):
                 cnt = 0
@@ -50,9 +54,7 @@ if __name__ == "__main__":
         if len(res) > maxCnt:
             maxCnt = len(res)
 
-
         groupNum = 2
-        check = [[0] * n for _ in range(n)]
         res = []
 
     print(maxCnt)

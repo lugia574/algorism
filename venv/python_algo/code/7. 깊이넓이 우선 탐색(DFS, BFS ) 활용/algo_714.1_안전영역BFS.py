@@ -42,7 +42,7 @@ if __name__ == "__main__":
     res = []
     maxCnt = -2147000000
     maxIndex = -2147000000
-    check = [[0] * n for _ in range(n)]
+
     q = deque()
     dx = [1, 0, -1, 0]
     dy = [0, 1, 0, -1]
@@ -54,6 +54,7 @@ if __name__ == "__main__":
     maxNum = max(map(max, arr))
 
     for x in range(maxNum):
+        check = [[0] * n for _ in range(n)]
         for i in range(n):
             for j in range(n):
                 if arr[i][j] > x:
@@ -72,7 +73,6 @@ if __name__ == "__main__":
 
         index = 2
         cnt = 0
-        check = [[0] * n for _ in range(n)]
         res = []
 
     print(maxCnt)
