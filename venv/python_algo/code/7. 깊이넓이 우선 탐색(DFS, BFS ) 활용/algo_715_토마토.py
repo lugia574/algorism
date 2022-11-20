@@ -38,7 +38,7 @@ def tomatoBFS():
                     if tomato[xx][yy] == 0:
                         tomato[xx][yy] = tomato[x][y] + 1
                         q.append((xx, yy))
-                        day = tomato[xx][yy]
+                        day = tomato[xx][yy] - 1
 
 
 
@@ -63,4 +63,4 @@ if __name__ == "__main__":
                 result = False
                 break
 
-    print(day-1 if result else -1)
+    print(day if result else -1)
