@@ -26,10 +26,9 @@ import sys
 def ladderDFS(loc):
     global start
     x, y = loc
-    if x == 9:
-        if board[x][y] == 2:
-            print(start)
-            sys.exit(0)
+    if x == 0:
+        print(y)
+        sys.exit(0)
 
     else:
         y1 = y - 1
@@ -40,7 +39,7 @@ def ladderDFS(loc):
         elif 0 <= y2 < 10 and board[x][y2] == 1 and check[x][y2] == 0:
             y = y2
         else:
-            x += 1
+            x -= 1
 
         check[x][y] = 1
         ladderDFS([x,y])
@@ -50,9 +49,15 @@ def ladderDFS(loc):
 if __name__ == "__main__":
     board = [list(map(int, input().split())) for _ in range(10)]
     for i in range(10):
-        if board[0][i] == 1:
+        if board[9][i] == 2:
             check = [[0]*10 for _ in range(10)]
             start = i
-            ladderDFS([0,i])
+            ladderDFS([9,i])
 
 
+
+# 지금 짠 코드는 하나하나 출발지점에서 출발해서 해당 도착지점이 정답이 맞는지 찾는거자너?
+# 이미 도착지점이 주어졌는데 말이야
+# 그럼 반대로 도착지점부터 출발해서 가서 해당 출발지점을 찾아가면
+# 굳이 여러번 할 필요 없이 딱 한번만 하면 되겠네
+# 와우
