@@ -24,7 +24,6 @@ import sys
 
 
 def ladderDFS(loc):
-    global start
     x, y = loc
     if x == 0:
         print(y)
@@ -51,7 +50,6 @@ if __name__ == "__main__":
     for i in range(10):
         if board[9][i] == 2:
             check = [[0]*10 for _ in range(10)]
-            start = i
             ladderDFS([9,i])
 
 
