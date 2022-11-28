@@ -22,8 +22,7 @@
 def fnc():
     for jw, v in jArr:
         for j in range(jw, w+1):
-            if chek[j] < chek[j-jw] + v:
-                chek[j] = chek[j-jw] + v
+            chek[j] = max(chek[j], chek[j-jw] + v)
 
 
 if __name__ == "__main__":
