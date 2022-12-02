@@ -26,20 +26,27 @@
 # M 2 0 3 10
 # M 3 M 0 7
 # M M M M 0
-
-def fnc():
-    for i in arr:
-        s, e, l = i
-
-
-
 if __name__ == "__main__":
     n, m = map(int, input().split())
-    arr = [list(map(int,input().split())) for _ in range(m)]
-    map = [[0] * n for _ in range(n)]
-    fnc()
+    dis = [[5000]* (n+1) for _ in range(n+1)]
+    # n,n 자리 0 으로 만들기
+    for i in range(1, n+1):
+        dis[i][i] = 0
 
-    for i in map:
-        for j in i:
-            print(j, end=" ")
+    # 받은 값 박아 넣기
+    for i in range(m):
+        a, b, c = map(int, input().split())
+        dis[a][b] = c
+
+    # 경유 했을때가 더 좋으면 값 갱신
+    for k in range(1, n+1):
+        for i in range(1, n+1):
+            for j in range(1, n+1):
+                dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j])
+    for i in range(1,n+1):
+        for j in range(1, n+1):
+            if dis[i][j] == 5000:
+                print("M", end=" ")
+            else:
+                print(dis[i][j], end=" ")
         print()
