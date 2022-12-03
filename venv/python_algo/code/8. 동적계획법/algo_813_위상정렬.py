@@ -26,7 +26,7 @@
 # 6 2
 # ▣ 출력예제 1
 # 1 6 2 5 4 3
-from collections import  deque
+from collections import deque
 
 def fnc ():
     while dq:
@@ -35,13 +35,8 @@ def fnc ():
         for i in range(1, n+1):
             if dis[x][i] == 1:
                 check[i] -= 1
-        for i in range(1, n+1):
-            if check[i] == 0:
-                dq.append(i)
-                check[i] = 9
-
-
-
+                if check[i] == 0:
+                    dq.append(i)
 
 if __name__== "__main__":
     n, m = map(int, input().split())
@@ -57,5 +52,4 @@ if __name__== "__main__":
     for i in range(1, n+1):
         if check[i] == 0:
             dq.append(i)
-            check[i] = 9
     fnc()
