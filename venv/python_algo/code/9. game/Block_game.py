@@ -1,6 +1,8 @@
 import turtle as t
 import random as r
 import time
+dy = [-1, 0, 1, 0]
+dx = [0, 1, 0, -1]
 
 # 움직이는 픽셀 객체 class
 class Brick():
@@ -37,6 +39,44 @@ def draw_grid(block, grid):
             block.goto(sc_x, sc_y) # 위치 이동
             block.color(colors[grid[y][x]]) # 해당 그리디 위치값이 0이면 블랙 7이면 화이트
             block.stamp() # 그 위치 그래픽 찍기
+
+# 해당 블록의 인접한 블록들이 동일한지 찾는 함수
+def DFS(y, x, grid, color):
+    global ch, blank
+    ch[y][x] = 1
+    blank.append((y,x))
+    for i in range(4):
+        yy = y + dy[i]
+        xx = x + dx[i]
+        if 0 < yy < 24 and 0 < xx < 13:
+            if grid[yy][xx] == color and ch[yy][xx] == 0:
+                DFS(yy, xx, grid, color)
+                if len(blank) >= 4:
+                    grid_update(grid, blank)
+                    
+# 블록이 있는 최고 높이 y 값 구하기 함수
+def max_height(grid):
+    for y in range(1,24):
+        for x in range(1, 13):
+            if grid[y][x] != 0:
+                return y
+
+# 인접한 동일한 블록들을 없애는 함수
+def grid_update(grid, blank):
+    # blank 튜플에 있는 값들 0으로 바꾸기
+    for y, x in blank:
+        grid[y][x] = 0
+    height = max_height(grid) # 블록이 있는 최고 높이 y 값
+    # 그러고 나서 빈칸으로 인해 공중에 떠 있는 것들 찾아서 아래로 내리기 (중력 작용)
+    for y in range(23, height, -1):
+        for x in range(1, 13):
+            if grid[y][x] == 0:
+                tmp_y = y
+                while grid[tmp_y-1][x] == 0 and tmp_y > 0:
+                    tmp_y -= 1
+                grid[y][x] = grid[tmp_y-1][x]
+                grid[tmp_y-1][x] = 0
+
 
 
 if __name__ == "__main__":
@@ -86,6 +126,9 @@ if __name__ == "__main__":
             brick.y += 1
             grid[brick.y][brick.x] = brick.color
         else:
+            ch = [[0] * 14 for _ in range(25)]
+            blank = []
+            DFS(brick.y, brick.x, grid, brick.color)
             brick = Brick()
 
         #격자판 그리기 함수 실행
