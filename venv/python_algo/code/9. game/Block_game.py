@@ -37,7 +37,10 @@ def draw_grid(block, grid):
             sc_x = left + (x * 22)
             sc_y = top - (y * 22)
             block.goto(sc_x, sc_y) # 위치 이동
-            block.color(colors[grid[y][x]]) # 해당 그리디 위치값이 0이면 블랙 7이면 화이트
+            if y == 15 and grid[y][x] == 7:
+                block.color("#d63031")
+            else:
+                block.color(colors[grid[y][x]]) # 해당 그리디 위치값이 0이면 블랙 7이면 화이트
             block.stamp() # 그 위치 그래픽 찍기
 
 # 해당 블록의 인접한 블록들이 동일한지 찾는 함수
@@ -51,8 +54,8 @@ def DFS(y, x, grid, color):
         if 0 < yy < 24 and 0 < xx < 13:
             if grid[yy][xx] == color and ch[yy][xx] == 0:
                 DFS(yy, xx, grid, color)
-                if len(blank) >= 4:
-                    grid_update(grid, blank)
+
+
                     
 # 블록이 있는 최고 높이 y 값 구하기 함수
 def max_height(grid):
@@ -72,11 +75,39 @@ def grid_update(grid, blank):
         for x in range(1, 13):
             if grid[y][x] == 0:
                 tmp_y = y
-                while grid[tmp_y-1][x] == 0 and tmp_y > 0:
+                while grid[tmp_y - 1][x] == 0 and tmp_y - 1 > 0:
                     tmp_y -= 1
-                grid[y][x] = grid[tmp_y-1][x]
-                grid[tmp_y-1][x] = 0
+                grid[y][x] = grid[tmp_y - 1][x]
+                grid[tmp_y - 1][x] = 0
 
+def continual_remove():
+    global ch, blank
+    while True:
+        flag = 1
+        for y in range(23, 15, -1):
+            for x in range(1, 13):
+                if grid[y][x] != 0:
+                    ch = [[0] * 14 for _ in range(25)]
+                    blank = []
+                    DFS(y, x, grid, grid[y][x])
+                    if len(blank) >= 4:
+                        grid_update(grid, blank)
+                        flag = 0
+                        draw_grid(block, grid) # 판 갱신
+        if flag == 1:
+            break
+
+
+
+def game_over():
+    pen.up()
+    pen.goto(-120,100)
+    pen.write("Game Over", font=("courier", 30))
+
+def you_win():
+    pen.up()
+    pen.goto(-100, 100)
+    pen.write("You Win", font=("courier", 30))
 
 
 if __name__ == "__main__":
@@ -113,6 +144,13 @@ if __name__ == "__main__":
     # 격자판 그리기 함수 실행
     draw_grid(block, grid)
 
+    pen = t.Turtle() # 터틀 새객체
+    pen.penup()
+    pen.ht() # 숨기기
+    pen.goto(-80, 290)
+    pen.color("#b2bec3") # 회색
+    pen.write("Puyo Puyo Game", font=("courier", 20, "normal")) #글 쓰기
+
     # 방향키에 따른 함수 실행
     sc.onkeypress(lambda : brick.move_left(grid), "Left")
     sc.onkeypress(lambda: brick.move_right(grid), "Right")
@@ -129,6 +167,19 @@ if __name__ == "__main__":
             ch = [[0] * 14 for _ in range(25)]
             blank = []
             DFS(brick.y, brick.x, grid, brick.color)
+
+            if len(blank) >= 4:
+                grid_update(grid, blank)
+                continual_remove() # 중력작용 이후 같은 블록들 연속 삭제
+
+            height = max_height(grid)
+            if height <= 15:
+                game_over()
+                break
+            elif height >= 22:
+                draw_grid(block, grid)
+                you_win()
+                break
             brick = Brick()
 
         #격자판 그리기 함수 실행
