@@ -1,8 +1,10 @@
 import turtle as t
 import random as r
 import time
+
 dy = [-1, 0, 1, 0]
 dx = [0, 1, 0, -1]
+colors = ["#2d3436", "#d63031", "#0984e3","#fab1a0", "#fdcb6e", "#00b894", "#6c5ce7", "#dfe6e9"] #블랙, 레드, 블루, 오렌지, 엘로우, 그린, 퍼플, 화이트
 
 # 움직이는 픽셀 객체 class
 class Brick():
@@ -10,28 +12,46 @@ class Brick():
     def __init__(self):
         self.y = 0
         self.x = 6
+        self.y2 = 0
+        self.x2 = 5
+        self.y3 = 0
+        self.x3 = 7
         self.color = r.randint(1,6)
+        self.turn = False
 
     # 방향키조정 함수
     # 왼쪽으로 이동
     def move_left(self, grid):
-        if grid[self.y][self.x-1] == 0 and grid[self.y+1][self.x-1] == 0:
+        if grid[self.y][self.x2-1] == 0 and grid[self.y+1][self.x2-1] == 0:
             grid[self.y][self.x] = 0
+            grid[self.y2][self.x2] = 0
+            grid[self.y3][self.x3] = 0
             self.x -= 1
+            self.x2 -= 1
+            self.x3 -= 1
 
     # 오른쪽을 이동
     def move_right(self, grid):
-        if grid[self.y][self.x + 1] == 0 and grid[self.y+1][self.x+1] == 0:
+        if grid[self.y][self.x3 + 1] == 0 and grid[self.y+1][self.x3+1] == 0:
             grid[self.y][self.x] = 0
+            grid[self.y2][self.x2] = 0
+            grid[self.y3][self.x3] = 0
+            
             self.x += 1
+            self.x2 += 1
+            self.x3 += 1
+
+    # 턴
+    def move_trun(self,grid):
+        return
 
 
 
 def draw_grid(block, grid):
+    global colors
     block.clear()
     top = 250
     left = -150
-    colors = ["#2d3436", "#d63031", "#0984e3","#fab1a0", "#fdcb6e", "#00b894", "#6c5ce7", "#dfe6e9"] #블랙, 레드, 블루, 오렌지, 엘로우, 그린, 퍼플, 화이트
     for y in range(len(grid)):
         for x in range(len(grid[0])):
             sc_x = left + (x * 22)
@@ -78,12 +98,8 @@ def max_height(grid):
             if grid[y][x] != 0:
                 return y
 
-# 인접한 동일한 블록들을 없애는 함수
-def grid_update(grid, blank):
-    # blank 튜플에 있는 값들 0으로 바꾸기
-    for y, x in blank:
-        grid[y][x] = 0
-    height = max_height(grid) # 블록이 있는 최고 높이 y 값
+# 중력기능
+def gravity(height):
     # 그러고 나서 빈칸으로 인해 공중에 떠 있는 것들 찾아서 아래로 내리기 (중력 작용)
     for y in range(23, height, -1):
         for x in range(1, 13):
@@ -93,6 +109,15 @@ def grid_update(grid, blank):
                     tmp_y -= 1
                 grid[y][x] = grid[tmp_y - 1][x]
                 grid[tmp_y - 1][x] = 0
+
+# 인접한 동일한 블록들을 없애는 함수
+def grid_update(grid, blank):
+    # blank 튜플에 있는 값들 0으로 바꾸기
+    for y, x in blank:
+        grid[y][x] = 0
+    height = max_height(grid) # 블록이 있는 최고 높이 y 값
+    # 그러고 나서 빈칸으로 인해 공중에 떠 있는 것들 찾아서 아래로 내리기 (중력 작용)
+    gravity(height)
 
 def continual_remove():
     global ch, blank, score
@@ -104,10 +129,10 @@ def continual_remove():
                     ch = [[0] * 14 for _ in range(25)]
                     blank = []
                     DFS(y, x, grid, grid[y][x])
-                    if len(blank) >= 4:
+                    if len(blank) >= 6:
                         grid_update(grid, blank)
                         flag = 0
-                        score += 100
+                        score += len(blank) * 100 if len(blank) >= 10 else len(blank) * 25
                         draw_score()
                         draw_grid(block, grid) # 판 갱신
         if flag == 1:
@@ -158,6 +183,8 @@ if __name__ == "__main__":
     brick = Brick()
     # 해당 벽돌 객체를 격자판에 기록
     grid[brick.y][brick.x] = brick.color
+    grid[brick.y2][brick.x2] = brick.color
+    grid[brick.y3][brick.x3] = brick.color
     # 격자판 그리기 함수 실행
     draw_grid(block, grid)
 
@@ -181,23 +208,32 @@ if __name__ == "__main__":
     while True:
         sc.update() # 화면 갱신
         # 아래 더 못내려가게, 아래에 블록이 없을때만 로직 실행
-        if grid[brick.y+1][brick.x] == 0:
+        if grid[brick.y+1][brick.x] == 0 and grid[brick.y2+1][brick.x] == 0 and grid[brick.y3+1][brick.x] == 0:
             grid[brick.y][brick.x] = 0
+            grid[brick.y2][brick.x2] = 0
+            grid[brick.y3][brick.x3] = 0
+
             brick.y += 1
-            grid[brick.y][brick.x] = brick.color
+            brick.y2 += 1
+            brick.y3 += 1
+
+            grid[brick.y][brick.x] = brick.color 
+            grid[brick.y2][brick.x2] = brick.color # 왼쪽
+            grid[brick.y3][brick.x3] = brick.color # 오른쪽
         else:
             ch = [[0] * 14 for _ in range(25)]
             blank = []
             DFS(brick.y, brick.x, grid, brick.color)
 
-            if len(blank) >= 4:
+            if len(blank) >= 6:
                 grid_update(grid, blank)
-                score += 100
+                score += len(blank) * 100 if len(blank) >= 10 else len(blank) * 25
                 draw_score()
                 continual_remove() # 중력작용 이후 같은 블록들 연속 삭제
 
             height = max_height(grid)
-            if height <= 15:
+            gravity(height) # 중력시스템
+            if height <= 3:
                 game_over()
                 break
             if score >= 2000:
