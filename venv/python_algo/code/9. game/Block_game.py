@@ -43,6 +43,20 @@ def draw_grid(block, grid):
                 block.color(colors[grid[y][x]]) # 해당 그리디 위치값이 0이면 블랙 7이면 화이트
             block.stamp() # 그 위치 그래픽 찍기
 
+def draw_score():
+    global score
+    str_score = str(score)
+    for _ in range(4-len(str_score)):
+        str_score = "0" + str_score
+    pen.clear()
+    pen.goto(-80, 290)
+    pen.write("Puyo Puyo Game", font=("courier", 20, "normal"))  # 글 쓰기
+    pen.goto(180, 200)
+    pen.write("Score", font=("courier", 15))
+    pen.goto(190, 170)
+    pen.write(f"{str_score}", font=("courier", 15))
+
+
 # 해당 블록의 인접한 블록들이 동일한지 찾는 함수
 def DFS(y, x, grid, color):
     global ch, blank
@@ -81,7 +95,7 @@ def grid_update(grid, blank):
                 grid[tmp_y - 1][x] = 0
 
 def continual_remove():
-    global ch, blank
+    global ch, blank, score
     while True:
         flag = 1
         for y in range(23, 15, -1):
@@ -93,6 +107,8 @@ def continual_remove():
                     if len(blank) >= 4:
                         grid_update(grid, blank)
                         flag = 0
+                        score += 100
+                        draw_score()
                         draw_grid(block, grid) # 판 갱신
         if flag == 1:
             break
@@ -115,6 +131,7 @@ if __name__ == "__main__":
     sc.tracer(False) #빠르게 그려줌
     sc.bgcolor("#2d3436")
     sc.setup(width=600, height=700)
+    score = 0
 
     # 격자판 >> 우리가 가지고 놀 게임판임
     # 0 은 빈공간
@@ -150,6 +167,11 @@ if __name__ == "__main__":
     pen.goto(-80, 290)
     pen.color("#b2bec3") # 회색
     pen.write("Puyo Puyo Game", font=("courier", 20, "normal")) #글 쓰기
+    # 스코어 기록
+    pen.goto(180,200)
+    pen.write("Score", font=("courier", 15))
+    pen.goto(190, 170)
+    pen.write("0000", font=("courier", 15))
 
     # 방향키에 따른 함수 실행
     sc.onkeypress(lambda : brick.move_left(grid), "Left")
@@ -170,13 +192,15 @@ if __name__ == "__main__":
 
             if len(blank) >= 4:
                 grid_update(grid, blank)
+                score += 100
+                draw_score()
                 continual_remove() # 중력작용 이후 같은 블록들 연속 삭제
 
             height = max_height(grid)
             if height <= 15:
                 game_over()
                 break
-            elif height >= 22:
+            if score >= 2000:
                 draw_grid(block, grid)
                 you_win()
                 break
@@ -184,8 +208,6 @@ if __name__ == "__main__":
 
         #격자판 그리기 함수 실행
         draw_grid(block, grid)
-        time.sleep(0.05)
+        time.sleep(0.1)
 
-    # for x in grid:
-    #     print(x)
     sc.mainloop()
