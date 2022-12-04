@@ -22,7 +22,7 @@ class Brick():
     # 방향키조정 함수
     # 왼쪽으로 이동
     def move_left(self, grid):
-        if grid[self.y][self.x2-1] == 0 and grid[self.y+1][self.x2-1] == 0:
+        if grid[self.y][self.x2-1] == 0:
             grid[self.y][self.x] = 0
             grid[self.y2][self.x2] = 0
             grid[self.y3][self.x3] = 0
@@ -32,7 +32,7 @@ class Brick():
 
     # 오른쪽을 이동
     def move_right(self, grid):
-        if grid[self.y][self.x3 + 1] == 0 and grid[self.y+1][self.x3+1] == 0:
+        if grid[self.y][self.x3 + 1] == 0:
             grid[self.y][self.x] = 0
             grid[self.y2][self.x2] = 0
             grid[self.y3][self.x3] = 0
@@ -46,7 +46,7 @@ class Brick():
         return
 
 
-
+# 뿌요뿌요 판 기본 그리기
 def draw_grid(block, grid):
     global colors
     block.clear()
@@ -63,6 +63,7 @@ def draw_grid(block, grid):
                 block.color(colors[grid[y][x]]) # 해당 그리디 위치값이 0이면 블랙 7이면 화이트
             block.stamp() # 그 위치 그래픽 찍기
 
+# 기록 및 타이틀 타이핑
 def draw_score():
     global score
     str_score = str(score)
@@ -100,7 +101,6 @@ def max_height(grid):
 
 # 중력기능
 def gravity(height):
-    # 그러고 나서 빈칸으로 인해 공중에 떠 있는 것들 찾아서 아래로 내리기 (중력 작용)
     for y in range(23, height, -1):
         for x in range(1, 13):
             if grid[y][x] == 0:
@@ -116,9 +116,11 @@ def grid_update(grid, blank):
     for y, x in blank:
         grid[y][x] = 0
     height = max_height(grid) # 블록이 있는 최고 높이 y 값
+    
     # 그러고 나서 빈칸으로 인해 공중에 떠 있는 것들 찾아서 아래로 내리기 (중력 작용)
     gravity(height)
 
+# 연쇄 없애기
 def continual_remove():
     global ch, blank, score
     while True:
@@ -158,7 +160,6 @@ if __name__ == "__main__":
     sc.setup(width=600, height=700)
     score = 0
 
-    # 격자판 >> 우리가 가지고 놀 게임판임
     # 0 은 빈공간
     grid = [[0]* 12 for _ in range(24)]
     
@@ -171,6 +172,7 @@ if __name__ == "__main__":
     for y in range(23, 20, -1):
         for x in range(1, 13):
             grid[y][x] = r.randint(1, 6)
+            
     # 그래픽 객체
     block = t.Turtle()
     block.penup() # 이렇게 하면 이동선상의 줄 생략 가능
@@ -191,14 +193,9 @@ if __name__ == "__main__":
     pen = t.Turtle() # 터틀 새객체
     pen.penup()
     pen.ht() # 숨기기
-    pen.goto(-80, 290)
     pen.color("#b2bec3") # 회색
-    pen.write("Puyo Puyo Game", font=("courier", 20, "normal")) #글 쓰기
-    # 스코어 기록
-    pen.goto(180,200)
-    pen.write("Score", font=("courier", 15))
-    pen.goto(190, 170)
-    pen.write("0000", font=("courier", 15))
+    # 그리기 함수 실행
+    draw_score()
 
     # 방향키에 따른 함수 실행
     sc.onkeypress(lambda : brick.move_left(grid), "Left")
