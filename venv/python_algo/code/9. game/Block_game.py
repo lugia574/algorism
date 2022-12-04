@@ -31,13 +31,13 @@ def draw_grid(block, grid):
     block.clear()
     top = 250
     left = -150
-    colors = ["#2d3436", "#d63031", "#0984e3","#e17055", "#fdcb6e", "#00b894", "#6c5ce7", "#dfe6e9"] #블랙, 레드, 블루, 오렌지, 엘로우, 그린, 퍼플, 화이트
+    colors = ["#2d3436", "#d63031", "#0984e3","#fab1a0", "#fdcb6e", "#00b894", "#6c5ce7", "#dfe6e9"] #블랙, 레드, 블루, 오렌지, 엘로우, 그린, 퍼플, 화이트
     for y in range(len(grid)):
         for x in range(len(grid[0])):
             sc_x = left + (x * 22)
             sc_y = top - (y * 22)
             block.goto(sc_x, sc_y) # 위치 이동
-            if y == 15 and grid[y][x] == 7:
+            if y == 3 and grid[y][x] == 7:
                 block.color("#d63031")
             else:
                 block.color(colors[grid[y][x]]) # 해당 그리디 위치값이 0이면 블랙 7이면 화이트
