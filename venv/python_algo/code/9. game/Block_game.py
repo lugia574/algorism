@@ -43,7 +43,28 @@ class Brick():
 
     # 턴
     def move_trun(self,grid):
-        return
+        if self.turn:
+            # 세로
+            print("세로다!")
+            grid[self.y2][self.x2] = 0
+            grid[self.y3][self.x3] = 0
+
+            self.y2 += 1
+            self.x2 -= 1
+            self.y3 -= 1
+            self.x3 += 1
+            self.turn = False
+        else:
+            # 가로
+            print("가로다 시벌!")
+            grid[self.y2][self.x2] = 0
+            grid[self.y3][self.x3] = 0
+
+            self.y2 -= 1
+            self.x2 += 1
+            self.y3 += 1
+            self.x3 -= 1
+            self.turn = True
 
 
 # 뿌요뿌요 판 기본 그리기
@@ -200,12 +221,14 @@ if __name__ == "__main__":
     # 방향키에 따른 함수 실행
     sc.onkeypress(lambda : brick.move_left(grid), "Left")
     sc.onkeypress(lambda: brick.move_right(grid), "Right")
+    sc.onkeypress(lambda: brick.move_trun(grid), "space")
     sc.listen()
     # 벽돌 움직이게 하기
     while True:
         sc.update() # 화면 갱신
+
         # 아래 더 못내려가게, 아래에 블록이 없을때만 로직 실행
-        if grid[brick.y+1][brick.x] == 0 and grid[brick.y2+1][brick.x2] == 0 and grid[brick.y3+1][brick.x3] == 0:
+        if (grid[brick.y+1][brick.x] == 0 and grid[brick.y2+1][brick.x2] == 0 and grid[brick.y3+1][brick.x3] == 0) or (brick.turn and  grid[brick.y3+1][brick.x3] == 0):
             grid[brick.y][brick.x] = 0
             grid[brick.y2][brick.x2] = 0
             grid[brick.y3][brick.x3] = 0
