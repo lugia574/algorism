@@ -22,30 +22,48 @@ class Brick():
     # 방향키조정 함수
     # 왼쪽으로 이동
     def move_left(self, grid):
-        if grid[self.y][self.x2-1] == 0 and grid[self.y+1][self.x2 - 1] == 0:
-            grid[self.y][self.x] = 0
-            grid[self.y2][self.x2] = 0
-            grid[self.y3][self.x3] = 0
-            self.x -= 1
-            self.x2 -= 1
-            self.x3 -= 1
+        if self.turn:
+            if grid[self.y3][self.x3-1] == 0 and grid[self.y2][self.x2-1] == 0 and grid[self.y][self.x-1] == 0 and grid[self.y3+1][self.x3-1] == 0:
+                grid[self.y][self.x] = 0
+                grid[self.y2][self.x2] = 0
+                grid[self.y3][self.x3] = 0
+                self.x -= 1
+                self.x2 -= 1
+                self.x3 -= 1
+        else:
+            if grid[self.y2][self.x2-1] == 0 and grid[self.y2+1][self.x2 - 1] == 0:
+                grid[self.y][self.x] = 0
+                grid[self.y2][self.x2] = 0
+                grid[self.y3][self.x3] = 0
+                self.x -= 1
+                self.x2 -= 1
+                self.x3 -= 1
 
     # 오른쪽을 이동
     def move_right(self, grid):
-        if grid[self.y][self.x3 + 1] == 0 and grid[self.y+1][self.x3+1] == 0:
-            grid[self.y][self.x] = 0
-            grid[self.y2][self.x2] = 0
-            grid[self.y3][self.x3] = 0
-            
-            self.x += 1
-            self.x2 += 1
-            self.x3 += 1
+        if self.turn:
+            if grid[self.y][self.x3 + 1] == 0 and grid[self.y2][self.x2 + 1] == 0 and grid[self.y][self.x + 1] == 0 and grid[self.y3+1][self.x3+1] == 0:
+                grid[self.y][self.x] = 0
+                grid[self.y2][self.x2] = 0
+                grid[self.y3][self.x3] = 0
+
+                self.x += 1
+                self.x2 += 1
+                self.x3 += 1
+        else:
+            if grid[self.y3][self.x3 + 1] == 0 and grid[self.y3+1][self.x3+1] == 0:
+                grid[self.y][self.x] = 0
+                grid[self.y2][self.x2] = 0
+                grid[self.y3][self.x3] = 0
+
+                self.x += 1
+                self.x2 += 1
+                self.x3 += 1
 
     # 턴
     def move_trun(self,grid):
         if self.turn:
             # 세로
-            print("세로다!")
             grid[self.y2][self.x2] = 0
             grid[self.y3][self.x3] = 0
 
@@ -56,7 +74,6 @@ class Brick():
             self.turn = False
         else:
             # 가로
-            print("가로다 시벌!")
             grid[self.y2][self.x2] = 0
             grid[self.y3][self.x3] = 0
 
@@ -228,7 +245,7 @@ if __name__ == "__main__":
         sc.update() # 화면 갱신
 
         # 아래 더 못내려가게, 아래에 블록이 없을때만 로직 실행
-        if (grid[brick.y+1][brick.x] == 0 and grid[brick.y2+1][brick.x2] == 0 and grid[brick.y3+1][brick.x3] == 0) or (brick.turn and  grid[brick.y3+1][brick.x3] == 0):
+        if (brick.turn.__eq__(False) and grid[brick.y+1][brick.x] == 0 and grid[brick.y2+1][brick.x2] == 0 and grid[brick.y3+1][brick.x3] == 0) or (brick.turn and  grid[brick.y3+1][brick.x3] == 0):
             grid[brick.y][brick.x] = 0
             grid[brick.y2][brick.x2] = 0
             grid[brick.y3][brick.x3] = 0
