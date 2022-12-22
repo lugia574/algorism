@@ -47,7 +47,7 @@ def solution(m, n, puddles):
     board = [[0] * (m+1) for _ in range(n+1)]
     board[1][1] = 1
     # DFS(m, n, puddles, board, (1,1), 0)
-
+    # https: // jinomadstory.tistory.com / 44
     for i in range(n+1):
         for j in range(m+1):
             if i == 1 and j ==1:
