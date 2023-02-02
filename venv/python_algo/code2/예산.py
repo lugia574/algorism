@@ -20,7 +20,10 @@
 
 
 # 이것도 조합/ 다만 이건 예산을 넘지 않는 선에서 계속 조합수를 늘려야함
-# DFM 로 하니까 타임아웃뜸 점화식으로 해봐야하나?
+# DFM 로 하니까 타임아웃뜸 점화식으로 해봐야하나? 시이ㅣ이이발
+
+
+from collections import deque
 
 def DFM(l, cost, budget, arr):
     global r
@@ -38,16 +41,17 @@ def DFM(l, cost, budget, arr):
 
 
 def solution(d, budget):
-    global r
-    global MaxCost
-    global lenght
+    d.sort()
+    answer = 0
     lenght = len(d)
-    DFM(0,0, budget, d)
 
-    answer = r
-    r = 0
-    MaxCost = 0
-    
+    for i in range(lenght):
+        if d[i] > budget:
+            break
+
+        budget -= d[i]
+        answer += 1
+
     return answer
 
 if __name__ == "__main__":
@@ -61,7 +65,7 @@ if __name__ == "__main__":
 
 
     d2 = [2,2,3,3]
-    budget2 = 3
+    budget2 = 10
     result2 = 4
 
     #ans = solution(d, budget)
