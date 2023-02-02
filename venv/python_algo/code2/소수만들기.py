@@ -20,11 +20,49 @@
 # [2,4,7]을 이용해서 13을 만들 수 있습니다.
 # [4,6,7]을 이용해서 17을 만들 수 있습니다.
 
+# 조합 갯수식은 nCr (중복)
+import math
+from collections import deque
+
+def PrimeNum(num):
+    strandNum = round(math.sqrt(num)) + 1
+
+    for i in range(2, strandNum):
+        if num % i == 0:
+            return False
+
+    return True
+
+
+
 
 def solution(nums):
-    answer = -1
+    ans = 0
+    length = len(nums)
 
-    # [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-    print('Hello Python')
+    for i in range(length):
+        for j in range(i+1, length):
+            for k in range(j+1, length):
+                val = sum([nums[i],nums[j],nums[k]])
+                bool = PrimeNum(val)
+                if bool:
+                    ans += 1
 
-    return answer
+
+    return ans
+
+if __name__ == "__main__":
+    nums = [1,2,3,4]
+    nums2 = [1,2,7,6,4]
+
+    res = 1
+    res2 = 4
+
+
+    result = solution(nums)
+    result2 = solution(nums2)
+
+    print(result)
+    print("정답입니다." if res == result else "틀렸습니다. 모지리새끼야")
+    print(result2)
+    print("정답입니다." if res2 == result2 else "틀렸습니다. 모지리새끼야")
