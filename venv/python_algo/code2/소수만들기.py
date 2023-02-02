@@ -22,7 +22,6 @@
 
 # 조합 갯수식은 nCr (중복)
 import math
-from collections import deque
 
 def PrimeNum(num):
     strandNum = round(math.sqrt(num)) + 1
