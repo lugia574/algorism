@@ -1,25 +1,29 @@
+# 뭔소리지 이해가 안감
+# https://jennnn.tistory.com/82
 
-
-
+import math
 def solution(n, stations, w):
     answer = 0
-    check = [0] * (n+1)
     cnt = 0
+    dist = []
 
-    for i in stations:
-        for j in range(i-w, i+w+1):
-            if 0 < j <= n:
-                check[j] = 1
+    for i in range(1, len(stations)):
+        dist.append((stations[i] - w - 1) - (stations[i - 1] + w))
 
-    for i in range(1, n+1):
-        if check[i] == 0:
-            cnt += 1
-            check[i] = 1
-            if cnt == w*2+1 or check[i+1] == 1 or i == n:
-                cnt = 0
-                answer += 1
+    dist.append(stations[0] - w - 1)
+    dist.append(n - (stations[-1] + w))
+
+    print(stations)
+    print(dist)
+
+    for i in dist:
+        if i <= 0:
+            continue
         else:
-            cnt == 0
+            print("================")
+            print(i)
+            print(i / (2 * w + 1))
+            answer += math.ceil(i / (2 * w + 1))
     return answer
 
 if __name__ == "__main__":
@@ -34,9 +38,9 @@ if __name__ == "__main__":
     answer2 = 3
     
     ans = solution(N, stations, W)
-    print(ans)
+    # print(ans)
     print("True" if ans == answer else "False")
 
     ans2 = solution(N2, stations2, W2)
-    print(ans2)
+    # print(ans2)
     print("True" if ans2 == answer2 else "Falsee")
