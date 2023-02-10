@@ -24,22 +24,24 @@ import math
 
 def solution(sticker):
     n = len(sticker)
-    answer = 0
-
     if n == 1:
         return sticker[0]
 
-    for i in range(2):
-        numSum = 0
-        index = i
-        while index < n:
-            numSum += sticker[index]
-            index += 2
+    dp1, dp2 = [0] * n, [0] * n
 
-        if numSum > answer:
-            answer = numSum
+    #  맨 앞 뜯는 경우
+    dp1[0] = sticker[0]
+    dp1[1] = dp1[0]
+    for i in range(2, n-1):
+        dp1[i] = max(sticker[i] + dp1[i-2], dp1[i-1])
 
-    return answer
+    # d2는 맨 앞 뜯지 않는 경우
+    for i in range(1, len(sticker)):
+        dp2[i] = max(dp2[i - 2] + sticker[i], dp2[i - 1])
+
+
+    return max(dp1[n-2], dp2[n-1])
+
 
 if __name__ == "__main__":
     sticker = [14, 6, 5, 11, 3, 9, 2, 10]
