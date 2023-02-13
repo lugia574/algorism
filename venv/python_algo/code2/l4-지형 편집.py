@@ -45,11 +45,15 @@ def solution(land, P, Q):
     res = 1000000001
 
     for i in range(1,n):
-        if i == prev:
+        if arr[i] == prev:
             continue
 
-        prev = i
-        cost += (P * i * (arr[i] - arr[i - 1])) - (Q * (n - i) * (arr[i] - arr[i - 1]))
+        prev = arr[i]
+
+        pAppendCost = i * P
+        qBackCost = (n-i) * Q
+        cost += pAppendCost - qBackCost
+
         if res < cost:
             break
         res = min(res, cost)
