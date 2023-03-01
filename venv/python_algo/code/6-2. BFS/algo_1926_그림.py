@@ -26,7 +26,7 @@
 # 그래프 전체 지도: int[][]
 # 체크 : int [][]
 # Q (BFS)
-    import sys
+import sys
 from collections import deque
 def pictureCheck(dq, check, picture):
     dy = [1, 0, -1, 0]
