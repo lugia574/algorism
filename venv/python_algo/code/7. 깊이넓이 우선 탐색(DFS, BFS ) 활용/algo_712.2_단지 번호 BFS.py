@@ -1,4 +1,5 @@
 from collections import deque
+import sys
 # ▣ 입력예제 1
 # 7
 # 0110100
@@ -13,42 +14,41 @@ from collections import deque
 # 7
 # 8
 # 9
-def groupBFS():
-    global cnt
+def groupBFS(x,y):
+    global group
+    global apart
 
+    cnt = 0
+    q = deque()
+    q.append((x,y))
     while q:
-        cnt += 1
         x, y = q.popleft()
-
-
+        cnt += 1
         for i in range(4):
             xx = x + dx[i]
             yy = y + dy[i]
             if 0 <= xx < n and 0 <= yy < n:
-                if apartment[xx][yy] == 1:
-                    apartment[xx][yy] = groupNum
+                if apart[xx][yy] == 1:
+                    apart[xx][yy] = groupNum
                     q.append([xx,yy])
+    group.append(cnt)
 
 if __name__ == "__main__":
+    input = sys.stdin.readline
     n = int(input())
-    apartment = []
+    apart = [list(map(int, input().rstrip())) for _ in range(n)]
     dx = [1, 0, -1, 0]
-    dy = [0, 1, 0 ,-1]
-    q = deque()
+    dy = [0, 1, 0, -1]
+
     group = []
     groupNum = 2
-    for _ in range(n):
-        tmp = list(map(int,input()))
-        apartment.append(tmp)
+
 
     for i in range(n):
         for j in range(n):
-            if apartment[i][j] == 1:
-                cnt = 0
-                apartment[i][j] = groupNum
-                q.append([i,j])
-                groupBFS()
-                group.append(cnt)
+            if apart[i][j] == 1:
+                apart[i][j] = groupNum
+                groupBFS(i,j)
                 groupNum += 1
 
     print(len(group))
