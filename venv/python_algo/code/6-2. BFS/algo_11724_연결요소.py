@@ -1,6 +1,5 @@
 import sys
 from collections import deque
-# sys.setrecursionlimit(10**7)
 
 def BFS(e):
     global check
@@ -9,28 +8,30 @@ def BFS(e):
     q.append(e)
     while q:
         x = q.popleft()
-        check[x] = 1
+        check[x] = True
         for k in node[x]:
-            if check[k] == 0:
+            if not check[k]:
                 q.append(k)
 
 
 if __name__ == "__main__":
-    n, m = map(int, sys.stdin.readline().split())
+    input = sys.stdin.readline
+    n, m = map(int, input().split())
     node = [[] for _ in range(n+1)]
-    check = [0] * (n+1)
+    check = [False] * (n+1)
     cnt = 0
+
     for _ in range(m):
-        x, y = map(int, sys.stdin.readline().split())
+        x, y = map(int, input().split())
         node[x].append(y)
         node[y].append(x)
 
     for i in range(1, n+1):
-        if check[i] == 0:
+        if not check[i]:
             if node[i]:
                 BFS(i)
             else:
-                check[i] = 1
+                check[i] = True
             cnt += 1
 
     print(cnt)
