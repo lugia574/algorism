@@ -16,6 +16,7 @@
 # 8 9 5 2 7
 # ▣ 출력예제 1
 # 5
+import sys
 from collections import deque
 
 
@@ -37,6 +38,7 @@ def safeSearchBFS(cutLine):
 
 
 if __name__ == "__main__":
+    input = sys.stdin.readline
     n = int(input())
     arr = []
     res = []

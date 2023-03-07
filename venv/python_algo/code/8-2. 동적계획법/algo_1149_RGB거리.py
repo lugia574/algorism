@@ -3,9 +3,12 @@ import sys
 if __name__ == "__main__":
     input = sys.stdin.readline
     n = int(input())
-    house = [list(map(int, input().split())) for _ in range(n)]
+    color = [list(map(int, input().split())) for _ in range(n)]
 
-    dp = [0] * (n+1)
+    for i in range(1, n):
+        color[i][0] = min(color[i - 1][1], color[i - 1][2]) + color[i][0]
+        color[i][1] = min(color[i - 1][0], color[i - 1][2]) + color[i][1]
+        color[i][2] = min(color[i - 1][0], color[i - 1][1]) + color[i][2]
 
-    # for i in range(n):
-    #     dp[i] = min()
+    print(min(color[n-1]))
+
