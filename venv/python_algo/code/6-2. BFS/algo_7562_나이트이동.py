@@ -31,7 +31,6 @@ if __name__ == "__main__":
         end = list(map(int,input().split()))
 
         board = [[0] * l for _ in range(l)]
-
         BFS((start[0],start[1]))
 
 
