@@ -1,4 +1,5 @@
 # n k >> n! / k! (n-k)!
+# https://color-change.tistory.com/36?category=881444
 import sys
 
 def pac(n):

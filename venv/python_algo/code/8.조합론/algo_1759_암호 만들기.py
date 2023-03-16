@@ -20,13 +20,6 @@ if __name__ == "__main__":
             print("".join(w))
 
 
-
-
-
-
-
-
-
 # def backTrack(l, idx):
 #     if l == length:
 #         co, vo = 0,0
