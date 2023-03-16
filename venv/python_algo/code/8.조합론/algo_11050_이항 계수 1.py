@@ -1,5 +1,4 @@
 # n k >> n! / k! (n-k)!
-# https://www.youtube.com/watch?v=Uzgz4c7SzBw
 import sys
 
 def pac(n):
