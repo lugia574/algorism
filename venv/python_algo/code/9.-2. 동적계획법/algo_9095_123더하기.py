@@ -4,11 +4,15 @@ if __name__ == "__main__":
     T = int(input())
     for _ in range(T):
         n = int(input())
+        
+        # 미리 걸러
         if n == 1 or n == 2:
             print(n)
             continue
         elif n == 3:
             print(4)
+
+        # dp
         dp = [0] * (n + 1)
 
         # 알고리즘 ㄱ
