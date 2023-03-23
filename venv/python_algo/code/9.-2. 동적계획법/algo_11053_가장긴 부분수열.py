@@ -7,14 +7,14 @@ import sys
 if __name__ == "__main__":
     input = sys.stdin.readline
     n = int(input())
-    sq = list(map(int, input().split()))
-    dp = [1] * n
+    sq = list(map(int, input().split())) # 값 받기
+    dp = [1] * n # dp 선언 및 초기화
 
     for i in range(n):
-        for j in range(i):
-            if sq[i] > sq[j]:
-                dp[i] = max(dp[i], dp[j] + 1)
-        print(dp)
+        for j in range(i): # sq Arr 가 처음부터 i - 1 번째까지 돌아
+            if sq[i] > sq[j]: # 현재 i 위치의 arr 값이 j 위치 arr 값보다 클때
+                dp[i] = max(dp[i], dp[j] + 1) # 현재 dp 값과 dp[j] + 1 값을 비교해서 더 큰값으로 갱신 해줌
+        #print(dp)
 
     print(max(dp))
 
@@ -27,3 +27,4 @@ if __name__ == "__main__":
 
 # 6
 # 10 20 10 30 20 50
+
