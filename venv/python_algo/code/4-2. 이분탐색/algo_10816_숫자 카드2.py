@@ -1,12 +1,5 @@
 import sys
 
-def binary(n, arr, lt, rt):
-
-    if lt > end:
-        return 0
-    mid = (lt + rt) // 2
-    if n ==
-
 if __name__ == "__main__":
     input = sys.stdin.readline
 
@@ -28,6 +21,14 @@ if __name__ == "__main__":
             print(check[(j * -1) + 10000000], end=" ")
         else:
             print(check[j], end=" ")
+
+
+
+# 7
+# 6 3 2 10 -10 10000000 -10000000
+# 10
+# 10 9 -5 2 3 4 5 -10 10000000 -10000000
+
 
     # 그냥 지금 딱 생각나는게 -1억 ~ 1억 총 2억개의 check 리스트를 만들고
     # card arr 를 싹 돌려서 해당 값을 check index 체크를 해
