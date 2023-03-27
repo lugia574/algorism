@@ -1,8 +1,4 @@
-# n = 1 >> 1
-# n = 2 >> 3
-# n = 3 >> 000
-#          000
-#          000
+# https://jyeonnyang2.tistory.com/51
 import sys
 
 if __name__ == "__main__":
