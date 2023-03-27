@@ -9,71 +9,77 @@
 # 뭐라고 하는건지 모르겠는데 아참 ㅇ참
 # https://great-park.tistory.com/26
 
+
+# 자
+
 import sys
 from collections import deque
 
 def bfs(sharkX, sharkY):
     q = deque()
-    q.append((sharkX, sharkY, 0))
-    dist = []
-    visted = [[0] * n for _ in range(n)]
-    visted[sharkX][sharkY] = 1
-    minDist = 10000000
-    while q:
-        x, y, d = q.popleft()
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if 0 <= nx < n and 0 <= ny < n and visted[nx][ny] == 0:
-                if board[nx][ny] <= sharkSize:
-                    visted[nx][ny] = 1
-                    if 0 < board[nx][ny] and board[nx][ny] < sharkSize:
-                        minDist = d
-                        dist.append((d + 1, nx, ny))
-                    if d + 1 <= minDist:
-                        q.append((nx, ny, d + 1))
-    if dist:
-        dist.sort()
-        return dist[0]
+    q.append((sharkX, sharkY))
 
+    visted = [[0] * n for _ in range(n)]
+    visted[sharkX][sharkY] = 0
+    while q:
+        x, y = q.popleft()
+        for i in range(4):
+            nx, ny = x + dx[i], y + dy[i]
+            if 0 <= nx < n and 0 <= ny < n:
+                if sharkSize >= board[nx][ny] and visted[nx][ny] == 0:
+                    visted[nx][ny] = visted[x][y] + 1
+                    q.append((nx, ny))
+    return visted
+
+def eating(visited):
+    x, y = 0, 0
+    min_dis = INF
+    for i in range(n):
+        for j in range(n):
+            if visited[i][j] > 0 and 0 < board[i][j] < sharkSize:
+                if visited[i][j] < min_dis:
+                    min_dis = visited[i][j]
+                    x, y = i, j
+
+    if min_dis == INF:
+        return False
     else:
-        return
+        return x, y, min_dis
 
 if __name__ == "__main__":
     input = sys.stdin.readline
     n = int(input())
-    board = []
+    board = [list(map(int, input().split())) for _ in range(n)]
     sharkSize = 2
-    eat = 0
-    eatCnt = 0
-    sharkX, sharkY = 0, 0
-    fishCnt = 0
-    fishPosition = []
-    time = 0
     dx = [0, 1, 0, -1]
     dy = [1, 0, -1, 0]
+    INF = 1e9
+    nowX, nowY = 0, 0
 
     for i in range(n):
-        line = list(map(int, input().split()))
-        board.append(line)
         for j in range(n):
-            if line[j] == 9:
-                sharkX, sharkY = i, j
-            elif 0 < line[j] and line[j] < 7:
-                fishCnt += 1
-                fishPosition.append([i,j])
-    board[sharkX][sharkY] = 0
+            if board[i][j] == 9:
+                nowX, nowY = i, j
+                board[i][j] = 0
 
-    while fishCnt:
-        res = bfs(sharkX, sharkY)
-        if not res:
+    res = 0
+    food = 0
+
+    while True:
+        visted = bfs(nowX,nowY)
+        position = eating(visted)
+
+        if not position:
+            print(res)
             break
-        sharkX, sharkY = res[0], res[1]
-        time += res[2]
-        eat += 1
-        if sharkSize == eat:
-            sharkSize += 1
-            eat = 0
-        board[sharkX][sharkY] = 0
+        else:
+            nowX, nowY, dis = position
+            res += dis
+            board[nowX][nowY] = 0
+            food += 1
 
-    print(time)
+        if food >= sharkSize:
+            sharkSize += 1
+            food = 0
+
+
