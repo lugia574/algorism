@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     stackArr = Stack()
     for _ in range(n):
-        command = sys.stdin.readline().split()
+        command = input().split()
 
         if command[0] == 'push':
             stackArr.push(command[1])
