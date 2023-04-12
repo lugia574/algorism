@@ -22,11 +22,13 @@
 # 이전 요소가 ) 이거면 )) 이니까 레이저가 아니라 바가 끝나는 지점이라는 소리니까
 # 스택에 쌓여 있는거 하나 pop 하고 그게 바 하나 끝났다는 소리니까 cnt += 1 해주는 거임
 # 이럼 끝
+import sys
+
 def cuttingFnc(arr):
     stack = [arr[0]]
     cnt = 0
     for i in range(1,len(arr)):
-        if arr[i] == "(" :
+        if arr[i] == "(":
             stack.append(arr[i])
         elif arr[i] == ")":
             stack.pop()
@@ -34,15 +36,12 @@ def cuttingFnc(arr):
                 cnt += len(stack)
             elif arr[i-1] == ")":
                 cnt += 1
-        else:
-            print("error")
-    return  cnt
 
-def inputFnc ():
-    arr = list(map(str,input()))
-    return arr
+    return cnt
 
-laserAndBar = inputFnc()
 
-res = cuttingFnc(laserAndBar)
-print(res)
+if __name__ == "__main__":
+    input = sys.stdin.readline
+    bar = list(map(str,input()))
+    res = cuttingFnc(bar)
+    print(res)

@@ -11,9 +11,9 @@ def printQue(n, m, val):
         tmp = q.pop(0)
         if tmp[1] == point:
             cnt += 1
-            val.remove(point)
             if tmp[0] == m:
                 break
+            val.remove(point)
             point = max(val)
         else:
             q.append(tmp)
