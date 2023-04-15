@@ -3,6 +3,7 @@
 # 보니까 시간제한 보다는 메모리에 제한이 있음
 # 4mb 면 마니 적은 편인거 같은데
 # https://www.youtube.com/watch?v=dTnuHZYgpaI
+# https://hooongs.tistory.com/208
 import sys
 
 if __name__ == "__main__":
