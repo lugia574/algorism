@@ -1,3 +1,6 @@
+# https://hongcoding.tistory.com/127
+# 아래껀 챗gpt 한태 물어봤는데 이렇게 짜줌
+
 import sys
 from collections import deque
 
@@ -32,6 +35,7 @@ if __name__ == "__main__":
     time = 0  # 게임 시작 시간
 
     while True:
+
         time += 1
 
         # 뱀의 다음 위치
