@@ -13,3 +13,5 @@ import sys
 
 if __name__ == "__main__":
     print("SK" if int(sys.stdin.readline())%2 != 0 else "CY")
+    # 돌게임 2 코드
+    # print("SK" if int(sys.stdin.readline())%2 == 0 else "CY")
