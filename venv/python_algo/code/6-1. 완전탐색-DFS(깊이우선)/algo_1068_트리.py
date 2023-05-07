@@ -8,13 +8,15 @@
 # 재귀가 끝나면 삭제될 노드들은 전부 -2로 갱신되어있으므로,
 # -2가 아니면서, 다른 노드의 부모노드도 아닌 원소(leaf 노드)를 찾을 때마다 count를 1씩 늘린다.
 # 이럼 root 노드 딱 하나만 남아 있어도 카운터 해줌
+# 난 이렇게 생각 절대 못할꺼 같은데
+
 import sys
 
-def dfs(num, arr):
+def dfs(num, arr, n):
     arr[num] = -2
-    for i in range(len(arr)):
+    for i in range(n):
         if num == arr[i]:
-            dfs(i, arr)
+            dfs(i, arr, n)
 
 if __name__ == "__main__":
     input = sys.stdin.readline
@@ -23,8 +25,8 @@ if __name__ == "__main__":
     k = int(input())
     count = 0
 
-    dfs(k, arr)
-    for i in range(len(arr)):
+    dfs(k, arr, n)
+    for i in range(n):
         if arr[i] != -2 and i not in arr:
             count += 1
     print(count)
