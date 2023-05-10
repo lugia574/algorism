@@ -1,5 +1,6 @@
 # https://degurii.tistory.com/47
 # 기하학 알고리즘에서 가장 기본적인 개념이라는데?
+# https://www.youtube.com/watch?v=iIDgR5uFy9o ?
 
 import sys
 
