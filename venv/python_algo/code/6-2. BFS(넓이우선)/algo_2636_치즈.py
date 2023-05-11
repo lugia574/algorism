@@ -1,5 +1,8 @@
 # 대체 치즈 안의 구멍을 어떻게 구분하냐 존나 모르겠었는데
 # 다 방법이 있더라 시벌
+# 그건 바로 반대로 치즈를 타고 도는게 아니라 바깥 0 부분을 타고 도는거임
+# 그럼 치즈 안에 빈 공간은 절대로 탈 수 가 없음
+# 바깥을 돌면서 접촉되는 치즈 부위만 따로 배열에 박아서 포문 돌면서 0 으로 만들어 주면 됨
 import math
 import sys
 from collections import deque
@@ -36,7 +39,7 @@ if __name__ == "__main__":
     while True:
         day += 1
         q = deque()
-        outlineCheese = deque()
+        outlineCheese = []
         visited = [[0] * c for _ in range(r)]
         tmp = BFS(0,0)
 
