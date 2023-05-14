@@ -6,22 +6,18 @@ def queFnc(arr, a):
     for x in a:
         length = len(arr)
         x_idx = arr.index(x)
-        if x_idx < length - x_idx:
-            while True:
-                if arr[0] == x:
-                    arr.popleft()
-                    break
+        circuit = True if x_idx < length - x_idx else False
+        while True:
+            if arr[0] == x:
+                arr.popleft()
+                break
+            if circuit:
                 tmp = arr.popleft()
                 arr.append(tmp)
-                cnt += 1
-        else:
-            while True:
-                if arr[0] == x:
-                    arr.popleft()
-                    break
+            else:
                 tmp = arr.pop()
                 arr.appendleft(tmp)
-                cnt += 1
+            cnt += 1
     return cnt
 
 if __name__ == "__main__":
