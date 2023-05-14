@@ -3,6 +3,8 @@
 # A 그룹 있고 B 그룹 있을 수 있는건데 다 하나로 퉁쳐버려
 # 그래서 그거를 보완해서 하니까 먼가 전체의 값이 증가되는듯??? 뭐가 문제냐 ㅋㅋ
 
+# https://pacific-ocean.tistory.com/375
+# 나랑 비슷한거 같은데?? 내가 뭐 실수 한듯?
 from collections import deque
 import sys
 
