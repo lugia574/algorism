@@ -7,6 +7,8 @@
 # 못해도 2차 배열 dp 로 해야할꺼 같은데
 # https://claude-u.tistory.com/271
 
+# 이거 다시 풀어봐야할듯
+
 import sys
 
 if __name__ == "__main__":
