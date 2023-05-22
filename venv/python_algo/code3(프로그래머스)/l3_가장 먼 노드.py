@@ -20,11 +20,14 @@ def solution(n, edge):
     maxVal = max(visited)
     for i in range(1, n+1):
         if visited[i] == maxVal: answer += 1
+
+    # 여기서 뭐 별로 큰 의미는 없을꺼 같은데 sort(revers=True) 해서 첫번째값 카운트 해도 됨
+    # answer = visited.count(distances[0])
     return answer
 
 if __name__ == "__main__":
     n = 6
-    edge = [[3, 6], [4, 3], [3, 2], [1, 3], [1, 2], [2, 4], [5, 2]]
+    edge     = [[3, 6], [4, 3], [3, 2], [1, 3], [1, 2], [2, 4], [5, 2]]
     res = 3
     ans = solution(n, edge)
     print(res == ans)
