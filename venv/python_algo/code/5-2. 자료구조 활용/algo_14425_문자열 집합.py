@@ -14,4 +14,4 @@ if __name__ == "__main__":
         if ss in group:
             cnt += 1
 
-    print(cnt)
+    print(cnt)_

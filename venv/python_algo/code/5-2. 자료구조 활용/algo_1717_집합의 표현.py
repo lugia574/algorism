@@ -1,3 +1,5 @@
+# https://www.youtube.com/watch?v=2v4sC8mOX38
+# 이거 유니온 집합에 대해 알아보자
 import sys
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
