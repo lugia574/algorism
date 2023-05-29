@@ -7,7 +7,7 @@
 # 그럼 어떻게 구하냐?
 
 # https://velog.io/@uoayop/BOJ-1300-K번째-수Python
-
+# https://www.youtube.com/watch?v=sgwbSk8XxP4
 import sys
 
 if __name__ == "__main__":
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     lt, rt = 0, k
     # k번째 수는 k보다 클 수 없음
     # 라는데 왜 k 보다 클수 없는지 잘 모르겠는데
-    # 대충 추론 해보자면 1X1 이 제법 마니 나옴 이런 짜바리 놈들이 아래 다 깔려서 절대로 k 보다 높은 수는 나오지 않는다 이런 소린가?
+    # 대충 추론 해보자면 중복된 짜바리 숫자들이 아래 다 깔려서 절대로 k 보다 높은 수는 나오지 않는다 이런 소린가?
 
     while lt <= rt:
         mid = (lt + rt) // 2
