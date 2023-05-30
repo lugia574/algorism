@@ -18,12 +18,12 @@ if __name__ == "__main__":
     input = sys.stdin.readline
     n, m = map(int, input().rsplit())
     node = [[] for _ in range (n+1)]
-    r = [list(map(int, input().rsplit())) for _ in range(m)]
     dp = [0] * (n+1)
     res = []
     maxCnt = 0
 
-    for a, b in r:
+    for _ in range(m):
+        a, b = map(int, input().rsplit())
         node[b].append(a)
 
     for i in range(1, n+1):
