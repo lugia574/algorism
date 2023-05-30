@@ -17,6 +17,8 @@ def edgeBFS(v):
             ny = y + dy[i]
             if 0 <= nx < n and 0 <= ny < n:
                 if board[nx][ny] != 0 and board[nx][ny] != v:
+                    # for x in dist:
+                    #     print(x)
                     return dist[x][y]
                 elif board[nx][ny] != v and dist[nx][ny] == -1:
                     dist[nx][ny] = dist[x][y] + 1
@@ -61,3 +63,12 @@ if __name__ == "__main__":
         res = min(res, edgeBFS(v))
 
     print(res)
+
+
+
+# 5
+# 1 1 0 0 0
+# 1 0 0 0 0
+# 0 0 0 0 0
+# 0 0 0 0 0
+# 0 1 1 0 0
