@@ -12,8 +12,6 @@ def DFS(l, idx):
                 DFS(l+1, x)
                 visited[x] = 0
 
-
-
 if __name__ == "__main__":
     input = sys.stdin.readline
     n, m = map(int, input().rsplit())

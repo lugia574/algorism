@@ -30,8 +30,6 @@ def BFS():
                     visited[nx][ny] = 2
                     removeArr.append((nx, ny))
 
-
-
 if __name__ == "__main__":
     input = sys.stdin.readline
     n, m = map(int, input().rsplit())
