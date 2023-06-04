@@ -19,7 +19,7 @@ if __name__ == "__main__":
         p = [list(map(int, input().rsplit())) for _ in range(n)]
         p = sorted(p, key = lambda x: (x[0], x[1]))
         cnt = 1
-        print(p)
+        # print(p)
         cutline = p[0][1]
         for i in range(1, n):
             if cutline > p[i][1]:
