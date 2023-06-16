@@ -16,7 +16,7 @@ def DFS(l):
     visited[l] = 1
     # dp[l][0] = 0
     # dp[l][1] = 1
-    
+
     for i in nodes[l]:
         if visited[i] == 0:
             DFS(i)
@@ -35,5 +35,4 @@ if __name__ == "__main__":
         nodes[a].append(b)
         nodes[b].append(a)
 
-    DFS(1)
     print(min(dp[1][0], dp[1][1]))
