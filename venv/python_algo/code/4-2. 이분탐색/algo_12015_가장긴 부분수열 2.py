@@ -15,7 +15,7 @@ def find(target):
             l = h = m
     return h
 
-input = sys.stdin.readline()
+input = sys.stdin.readline
 l = int(input())
 arr = list(map(int, input().rsplit()))
 stack = [0]

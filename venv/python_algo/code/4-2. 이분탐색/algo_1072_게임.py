@@ -1,3 +1,4 @@
+# https://velog.io/@uoayop/BOJ-1072-게임Python
 import sys
 
 def winrate(x, y):

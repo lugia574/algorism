@@ -4,10 +4,8 @@
 # 하긴 입력 제한이 key는 M x M(3 ≤ M ≤ 20, M은 자연수)크기 2차원 배열입니다.
 # lock은 N x N(3 ≤ N ≤ 20, N은 자연수)크기 2차원 배열입니다.
 # 자물쇠와 열쇠
-
-# NxN 2차원 리스트 d도 회전
-# 회전 각도 d => 1: 90도, 2: 180도, 3: 270도
-
+# 이걸 보는게 더 도움될듯
+# https://code-lab1.tistory.com/152
 def rotate(array, d):
     n = len(array)  # 배열의 길이
     result = [[0] * n for _ in range(n)]

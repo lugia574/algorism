@@ -1,3 +1,4 @@
+# https://velog.io/@qweadzs/프로그래머스-다단계-칫솔-판매Python 참고삼아 함 보자
 def divide(m, a, rel, money):
     while True:
         if a == "center":
