@@ -3,6 +3,11 @@
 # 되는 문제들이였지만
 # 이 문제는 직접 데이터 가공을 해서 해야한다는 문제임
 # 딱 프로그래머스에서 좋아할만한 형태의 문제 여기서 하나 요소 하나 더 들어가면 딱임
+# https://jjangsungwon.tistory.com/92
+
+# 보니까 요소가 하나 더 있음 ㅋㅋ
+# https://developmentdiary.tistory.com/450
+# 행성 갯수가 존나 많아서 이걸 다 계산하고 있으면 시초가 날꺼라는거야
 
 import sys
 
@@ -32,9 +37,11 @@ if __name__ == "__main__":
 
     # 데이터 가공
     # 각 좌표별로 정렬한 후 거리를 계산해서 edge를 만든다.
+    # 만약 정렬을 통해 각 행성 사이의 거리를 구하지 않고 모든 행성 사이의 거리를 구하면 시간 초과가 발생할 것
     edges = []
     for i in range(3):
         c.sort(key=lambda x:x[i])
+        # print(c)
         for j in range(1, n):
             edges.append((abs(c[j - 1][i] - c[j][i]), c[j - 1][3], c[j][3]))
 
