@@ -5,6 +5,11 @@
 # 라네~
 
 # https://www.youtube.com/watch?v=611B-9zk2o4&t=472s
+
+# 다익스트라 알고리즘의 시간복잡도
+# https://ds-jungsoo.tistory.com/7
+# 기본 알고리즘의 시간복잡도는 O(V^2)임 근데 이럼 너무 커져서
+# 우선순위 큐를 사용해서 이를 좀 더 개선한게 지금 쓰는 다익스트라 알고리즘
 import sys
 import heapq
 
