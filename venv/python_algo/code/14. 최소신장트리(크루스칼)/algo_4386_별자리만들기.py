@@ -1,4 +1,3 @@
-import math
 import sys
 
 def getParent(a):
@@ -37,5 +36,5 @@ if __name__ == "__main__":
         if getParent(a) != getParent(b):
             unionParent(a, b, c)
 
-    print(math.floor(res, 2))
+    print(round(res, 2))
 
