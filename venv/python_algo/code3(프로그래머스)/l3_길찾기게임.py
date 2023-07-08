@@ -9,6 +9,7 @@
 import sys
 sys.setrecursionlimit(10 ** 6)
 
+# Node 클래스 선언
 class Node:
     def __init__(self, id, x, y):
         self.id = id
@@ -22,6 +23,8 @@ class Node:
             return self.x < other.x
         return self.y > other.y
 
+# node 붙여주기 
+# 왼쪽은 부모 x 가 더 크고 오른 쪽은 자식 x 가 더 큰것이 기준
 def addNode(parent, child):
     if child.x < parent.x:
         if parent.left is None:
