@@ -18,6 +18,13 @@
 # 앞뒤 노드의 연결을 수정해줘
 # 그리고 'Z' 일땐 휴지통에서 pop 해줘서 해당 노드 정보에 앞뒤가 누군지 다 나와있으니까
 # 재연결 해주면 되는거임
+
+# 이게 가령 n = 8 인데 u 50 이면 딱봐도 index 0 에서 더는 안올라가야하는거 아니냐?
+# 근데 이건 -1 로 해서 한바뀌 돌아버림 아닌가 도는게 아니라 무조건 맨뒤로 보내버리는거 아닌가?
+# 그러네 맞네 무조건 -1 이니까
+# 표의 범위를 벗어나는 이동은 입력으로 주어지지 않습니다. 라고 해서 그런가????'
+# 아예 신경을 안써버리네
+
 from collections import deque
 
 class Node:
@@ -88,16 +95,16 @@ def solution(n, k, cmd):
 
 
 if __name__ == "__main__":
-    # n, k = 8, 2
-    # cmd = ["D 2","C","U 3","C","D 4","C","U 2","Z","Z"]
-    # result = "OOOOXOOO"
-    #
-    # answer = solution(n, k, cmd)
-    # print(result == answer, answer)
-
     n, k = 8, 2
-    cmd = ["D 2","C","U 3","C","D 4","C","U 2","Z","Z","U 1","C"]
-    result = "OOXOXOOO"
+    cmd = ["D 2","C","U 3","C","D 4","C","U 2","Z","Z", "D 50", "C"]
+    result = "OOOOXOOX"
 
     answer = solution(n, k, cmd)
     print(result == answer, answer)
+
+    # n, k = 8, 2
+    # cmd = ["D 2","C","U 3","C","D 4","C","U 2","Z","Z","U 1","C"]
+    # result = "OOXOXOOO"
+    #
+    # answer = solution(n, k, cmd)
+    # print(result == answer, answer)
