@@ -14,8 +14,6 @@
 # 그럼 이걸 어떻게 구현하냐~
 # https://blackon29.tistory.com/65
 # 와 난 왤캐 구현을 못하냐, 전체탐색 해야겠다라는 생각도 못했어
-
-
 def check(answer):
     for x, y, stuff in answer:
         if stuff == 0: #기둥 체크
