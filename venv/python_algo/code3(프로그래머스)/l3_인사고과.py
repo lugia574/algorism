@@ -26,6 +26,8 @@ def solution(scores):
         if target[0] < score[0] and target[1] < score[1]:
             return -1
         # threshold보다 크거나 같은 경우에만 석차를 증가
+        # 나중에 탐색하는 학생의 두 번째 점수가 먼저 탐색하는 학생의 두 번째 점수보다 작은 경우가 단 하나라도 있으면 해당 학생보다 두 점수가 높은 학생이 있음이 보장되게 됩니다.
+        # 즉 제외 되는 놈을 말하는거임
         if threshold <= score[1]:
             if target_score < score[0] + score[1]:
                 answer += 1
