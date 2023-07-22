@@ -29,8 +29,7 @@
 import sys, math, random
 
 def playGame():
-    print("환영합니다 이 게임은 블랙잭입니다.")
-    print("딜러와 섹스해서 21명을 임신하세요")
+    print("환영합니다.")
     print("대충 개요")
 
 def bet():
