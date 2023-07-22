@@ -38,7 +38,8 @@ if __name__ == "__main__":
     tree = [0] * (n+1)
     for i in range(n):
         tree = update(tree, i+1, nums[i])
-        #print(tree)
+
+    print(tree)
 
     for _ in range(m+k):
         a, b, c = map(int, input().split())
