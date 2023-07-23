@@ -265,7 +265,7 @@ if __name__ == "__main__":
         BlackJack()
 
         print("현재 금액: ", Player_money)
-        if Player_money == 0:
+        if Player_money < 0:
             print("금액이 없습니다.")
             print("플레이를 하실 수 없습니다.")
             break
