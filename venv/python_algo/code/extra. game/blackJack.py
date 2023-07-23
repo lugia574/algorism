@@ -33,8 +33,9 @@ def playGame():
     print("대충 개요")
 
 def bet():
-    global betting_money, Player_money
+    global Betting_money, Player_money
 
+    print("현재 금액: ", Player_money)
     ok = False
     while not ok:
         print("베팅할 금액을 입력하세요 :", end=" ")
@@ -43,10 +44,10 @@ def bet():
             print("올바른 금액을 다시 입력해수길 바랍니다.")
             continue
 
-        betting_money = int(tmp)
-        if betting_money > Player_money:
+        Betting_money = int(tmp)
+        if Betting_money > Player_money:
             print("보유 금액보다 많은 금액을 베팅하셨습니다.")
-        elif betting_money == 0:
+        elif Betting_money == 0:
             print("0원을 베팅하실수 없습니다.")
         else:
             ok = True
@@ -91,7 +92,7 @@ def isBlackJack(deck):
     sumScore = 0
     ace = 0
     for _, num in deck:
-        if num > 10:
+        if num > 9:
             sumScore += 10
         elif num == 0:
             ace += 1
@@ -122,51 +123,69 @@ def bustCheck(score):
         bust = True
     return bust
 
-def dealerPlaying(card, score):
+def dealerPlaying(card, score, Player_Bust):
+    BUST = False
     print("====== 딜러 ======")
+    if Player_Bust:
+        print("딜러: Stay")
+        printCard(card, 0)
+        return card, score, BUST
+
     while score < 17:
         print("딜러: Hit")
         card.append(cardDraw())
         score = isBlackJack(card)
         printCard(card, 0)
-        
-    return card, score
+
+    if bustCheck(score):
+        BUST = True
+        print("딜러 Bust")
+    return card, score, BUST
 
 def playerPlaying(card):
     global Betting_money
     hit = True
     check = True
     score = 0
-
+    Dealer_WIN = False
     while hit:
         # 스탠드, 히트 물어보기
         print("====== 플레이어 ======")
         print("어떻게 하시겠습니까?")
-        print("1: 히트 2: 스탠드 3: 더블다운 >>>", end=" ")
+        if check:
+            print("1: 히트 2: 스탠드 3: 더블다운 >>>", end=" ")
+        else:
+            print("1: 히트 2: 스탠드 >>>", end=" ")
         hs = cmd()
+
         if hs == 1:
             print("플레이어: Hit")
             card.append(cardDraw())
-            score = isBlackJack(card)
             check = False
-            if not bustCheck(score):
-                hit = False
-                print("Bust")
 
         elif hs == 3 and check:
             print("플레이어: Buble Down")
             card.append(cardDraw())
-            score = isBlackJack(card)
-            bustCheck(score)
             Betting_money *= 2
             hit = False
             check = False
         else:
             print("플레이어: Stay")
             hit = False
+
         print("====== 현재 플레이어 카드 ======")
         printCard(card, 0)
-    return card, score
+        
+        # 버스터 체크
+        score = isBlackJack(card)
+        if bustCheck(score):
+            hit = False
+            print("Bust")
+            Dealer_WIN = True
+        if score == 21:
+            hit = False
+        print("현재 점수: ", score)
+    return card, score, Dealer_WIN
 def jump():
     for _ in range(2):
         print()
@@ -198,35 +217,39 @@ def BlackJack():
             break
 
         # 플레이어 ㄱㄱ
-        Player_card, Player_score = playerPlaying(Player_card)
-        jump()
+        Player_card, Player_score, Player_Bust = playerPlaying(Player_card)
+
         # 딜러 움직임
         print("========= 딜러 카드 공개=========")
         printCard(Dealer_card, 0)
         Dealer_score = isBlackJack(Dealer_card)
-        Dealer_card, Dealer_score = dealerPlaying(Dealer_card, Dealer_score)
-        if bustCheck(Dealer_score):
-            WIN = True
+        Dealer_card, Dealer_score, Dealer_Bust = dealerPlaying(Dealer_card, Dealer_score, Player_Bust)
+        #print("테스트", Dealer_card, Dealer_score, Dealer_Bust)
 
 
-        jump()
+
+        print()
         # 카드 보여주기
         print("플레이어 점수: ",Player_score, end=" ")
         printCard(Player_card, 0)
         print("딜러 점수: ", Dealer_score, end=" ")
         printCard(Dealer_card, 0)
 
-        if Player_score > Dealer_score or WIN:
+        if Dealer_Bust:
             print("이겼습니다.")
             WIN = True
-            break
+        elif Player_Bust:
+            print("졌습니다.")
         elif Player_score == Dealer_score:
             Betting_money = 0
             print("비겼습니다.")
-            break
         else:
-            print("졌습니다. 모지리새끼야")
-            break
+            if Player_score > Dealer_score:
+                print("이겼습니다.")
+                WIN = True
+            else:
+                print("졌습니다.")
+        break
 
     Player_money += Betting_money * 2 if WIN else Betting_money * -1
 
@@ -240,9 +263,17 @@ if __name__ == "__main__":
     playGame()
     while CONTINUE_GAME and Player_money > 0:
         BlackJack()
+
         print("현재 금액: ", Player_money)
+        if Player_money == 0:
+            print("금액이 없습니다.")
+            print("플레이를 하실 수 없습니다.")
+            break
+
         print("베팅하시겠습니까?")
         print("1: Yes, 2: No", end=" ")
         CONUTNUE = cmd()
-        CONTINUE_GAME = True if CONUTNUE else False
-    
+        CONTINUE_GAME = True if CONUTNUE == 1 else False
+
+    # 정산
+    # 할려고 했느데 귀찮
