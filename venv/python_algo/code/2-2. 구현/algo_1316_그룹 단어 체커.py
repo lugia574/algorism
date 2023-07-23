@@ -6,11 +6,11 @@ def groupChecker(st):
     for x in st[1:]:
         if pre == x:
             continue
-        else:
-            if x in dic:
-                return False
-            dic.append(pre)
-            pre = x
+        if x in dic:
+            return False
+        dic.append(pre)
+        pre = x
+
     return True
 
 if __name__ == "__main__":
