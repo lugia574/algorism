@@ -26,7 +26,7 @@
 # - 2. 딜러는 플레이어들에게 각각 2장의 카드를 배부한다. 딜러도 2장의 카드를 받아, 1번째 카드를 비공개해 둔 것 이외에는 모든 참가자의 카드는 공개된다
 # - 3. 참가자들은 블랙잭이 아닌 경우, 합계가 21점에 가까워지도록 하기 위해 딜러로부터 카드를 추가로 받을 수 있다.(힛(Hit)) 추가 카드는 합계가 21이 되거나,
 #      초과하지 않는 한 제한없이 몇 장이라도 요구할 수 있다.  한편 카드를 더 받지 않는 것이 유리하다고 판단되면 카드를 더 받지 않아도 된다.(스탠드, 스테이(Stand, Stay))
-import sys, math, random
+import sys, math, random, time
 
 def playGame():
     print("환영합니다.")
@@ -132,6 +132,7 @@ def dealerPlaying(card, score, Player_Bust):
         return card, score, BUST
 
     while score < 17:
+        time.sleep(3)
         print("딜러: Hit")
         card.append(cardDraw())
         score = isBlackJack(card)
