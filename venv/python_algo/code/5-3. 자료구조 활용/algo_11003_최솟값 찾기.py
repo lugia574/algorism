@@ -1,10 +1,10 @@
 import sys
 from collections import deque
 if __name__ == "__main__":
+
     input = sys.stdin.readline
     N, L = map(int, input().split())
     num = list(map(int, input().split()))
-
     ##최솟값을 구할 곳
     temp = deque([])
 
