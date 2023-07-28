@@ -6,7 +6,7 @@
 # 그럼 스택에 더 클놈이 나올때까지 pop 해줘 그게 k 번까지만
 # 그렇게 다 들어가면 이때 k 번까지 다 pop 안했을수도 있음
 # 그러니까 k>0 이면 stack[:-k] 까지 출력해주고
-# k == 0 dlaus stack 다 출력해주면 됨
+# k == 0 이면 stack 다 출력해주면 됨
 
 import sys
 # sys.setrecursionlimit(int(1e9))
