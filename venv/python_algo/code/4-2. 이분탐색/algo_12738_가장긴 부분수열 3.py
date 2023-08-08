@@ -3,18 +3,21 @@
 
 import sys
 
-def binary(start, end, target):
-    if start > end:
-        return start
-    mid = (start + end) // 2
-    if res[mid] > target:
-        return binary(start, mid-1, target)
+def binary(target):
+    start = 0
+    end = len(res) - 1
 
-    elif res[mid] == target:
-        return mid
+    while start <= end:
+        mid = (start + end) // 2
 
-    else:
-        return binary(mid+1, end, target)
+        if res[mid] == target:
+            return mid
+        elif res[mid] < target:
+            start = mid + 1
+        else:
+            end = mid - 1
+
+    return start
 
 if __name__ == "__main__":
     input = sys.stdin.readline
@@ -26,7 +29,8 @@ if __name__ == "__main__":
         if res[-1] < arr[i]:
             res.append(arr[i])
         else:
-            res[binary(0, len(res)-1, arr[i])] = arr[i]
+            index = binary(arr[i])
+            res[index] = arr[i]
 
     print(len(res))
 
