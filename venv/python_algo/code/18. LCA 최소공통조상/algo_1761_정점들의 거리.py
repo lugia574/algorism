@@ -1,4 +1,5 @@
 # 자 설명을 쓰도록 하자
+# 는 시발 전혀 이해를 못하고 있었자너
 
 import sys
 sys.setrecursionlimit(int(1e9))

@@ -3,7 +3,7 @@
 # 근데 뭐 테스트케이스가 추가됐는지 안되네 ㅋㅋ
 
 import sys
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(int(1e9))
 
 def lca(a, b):
     while depth[a] != depth[b]:
