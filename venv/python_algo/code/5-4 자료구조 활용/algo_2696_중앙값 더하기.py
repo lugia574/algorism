@@ -1,3 +1,4 @@
+# https://velog.io/@boorook/Python-백준-2696-중앙값-구하기-문제-풀이
 import sys
 from heapq import heappush, heappop
 
