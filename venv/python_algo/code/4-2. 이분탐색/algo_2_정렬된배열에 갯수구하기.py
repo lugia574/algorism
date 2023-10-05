@@ -3,6 +3,7 @@
 # 이 문제는 시간복잡도 logN 으로 풀지 않을 시 시간초과 판정 받음
 # 이 문제는 값이 특정 범위에 속하는 갯수 구하기로
 # 정렬된 순서에서 가장 왼쪽 index 랑 가장 오른쪽 index 를 구해서 rt - lt 하면 됨
+
 from bisect import bisect_left, bisect_right
 
 def solution(n, x, arr):
