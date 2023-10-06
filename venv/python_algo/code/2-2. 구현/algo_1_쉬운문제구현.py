@@ -27,6 +27,18 @@ def algo_559():
         if not student[i]:
             print(i)
 
+#### algo_11719_그대로 출력하기2
+def algo_11719():
+    for line in sys.stdin:
+        print(line, end='')
+
+    # input = sys.stdin.readline
+    # while True:
+    #     try:
+    #         print(input())
+    #     except EOFError:
+    #         break
+
 if __name__ == '__main__':
-    algo_559()
+    algo_11719()
 
