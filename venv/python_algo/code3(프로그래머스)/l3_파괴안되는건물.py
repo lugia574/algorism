@@ -19,9 +19,11 @@
 # 이건 1차원 배열 누적합이고 이걸 2차원 배열은 행과 열로 기록을 해야함
 # 0 0 0 0
 # 0 0 0 0
+# 0 0 0 0
 # 0 0 0 0 이라고 했을때 0,0 부터 2,2 까지 2만큼 더한다고 하면
 
 # 2  0  0  -2
+# 0  0  0   0
 # 0  0  0   0
 # -2 0  0   2 이렇게 됨
 # 와 근데 어렵다 ㅋㅋ
@@ -47,10 +49,7 @@ def solution(board, skill):
     for j in range(m):
         for i in range(n):
             check[i+1][j] += check[i][j]
-            
-    # print("누적합 결과값 함 보자")
-    # for x in check:
-    #     print(x)
+
     
     # 누적값 대입
     for i in range(n):

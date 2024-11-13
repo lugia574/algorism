@@ -1,5 +1,5 @@
 # 뭔소린지 알겠는데 이거 비슷한 문제 나오면 내가 이걸 적용할수 있을랑가 모르겠네
-
+# https://deok2kim.tistory.com/232
 import sys, heapq
 
 if __name__ == "__main__":

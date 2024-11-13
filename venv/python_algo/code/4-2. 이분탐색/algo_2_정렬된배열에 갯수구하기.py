@@ -11,9 +11,36 @@ def solution(n, x, arr):
     lt = bisect_left(arr, x)
     answer = rt - lt
     return answer if answer > 0 else -1
+
+def mySolution(n, x, arr):
+    mid = n // 2
+    rt = searchRight(mid, n-1, x, arr)
+    lt = searchLeft(0, mid, x, arr)
+    answer = rt - lt
+    return answer if answer > 0 else - 1
+
+def searchRight(start, end, x, arr):
+    while start < end:
+        mid = (start + end) // 2
+        if arr[mid] == x:
+            start = mid + 1
+        else:
+            end = mid - 1
+    return start
+
+def searchLeft(start, end, x, arr):
+    while start < end:
+        mid = (start + end) // 2
+        if arr[mid] == x:
+            end = mid - 1
+        else:
+            start = mid + 1
+    return start
+
 if __name__ == "__main__":
     n, x = 7, 2
     arr = [1, 1, 2, 2, 2, 2, 3]
     res = 4
-    ans = solution(n, x, arr)
+    # ans = solution(n, x, arr)
+    ans = mySolution(n, x, arr)
     print(res == ans, ans)

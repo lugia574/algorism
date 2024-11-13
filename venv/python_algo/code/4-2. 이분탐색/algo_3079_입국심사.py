@@ -8,6 +8,7 @@
 # 이걸 내가 하지를 못해요
 # https://wooono.tistory.com/629
 # total 은 mid시간 동안 검사할 수 있는 총 사람의 수
+# 이건 나중에 다시 풀어보자 너무 내가 무능하다 진짜
 import sys
 
 if __name__ == "__main__":
